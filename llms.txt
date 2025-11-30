@@ -311,7 +311,7 @@ resources:
 
 - **CCSR Mapping Files** - Classification software tools (free download
   from [HCUP Tools &
-  Software](https://hcup-us.ahrq.gov/toolssoftware/ccsr/ccsr.jsp))
+  Software](https://hcup-us.ahrq.gov/toolssoftware/ccsr/ccs_refined.jsp))
 - **HCUP Summary Trend Tables** - Aggregated statistical reports (free
   download from [HCUP
   Reports](https://hcup-us.ahrq.gov/reports/trendtables/summarytrendtables.jsp))
