@@ -163,8 +163,8 @@ Useful links:
 - <https://hcup-us.ahrq.gov/toolssoftware/ccsr/ccs_refined.jsp> - CCSR
   Overview
 
-- <https://hcup-us.ahrq.gov/toolssoftware/ccsr/ccsr.jsp> - CCSR Tools
-  and Downloads
+- <https://hcup-us.ahrq.gov/toolssoftware/ccsr/ccs_refined.jsp> - CCSR
+  Tools and Downloads
 
 - <https://hcup-us.ahrq.gov/reports/trendtables/summarytrendtables.jsp> -
   Summary Trend Tables
