@@ -433,7 +433,6 @@ Contributions are welcome! Please feel free to:
 ## Contact
 
 - **Package Maintainer**: Vikrant Dev Rathore
-- **Email**: <rathore.vikrant@gmail.com>
 - **GitHub**:
   [vikrant31/HCUPtools](https://github.com/vikrant31/HCUPtools)
 - **Issues**: [GitHub
