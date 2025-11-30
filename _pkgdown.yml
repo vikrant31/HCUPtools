@@ -1,0 +1,55 @@
+url: https://vikrant31.github.io/HCUPtools/
+
+template:
+  bootstrap: 5
+  light-switch: true
+  bslib:
+    base_font:
+      google: "Inter"
+    code_font:
+      google: "Fira Code"
+  logo:
+    src: man/figures/HCUPtools.png
+    alt: HCUPtools logo
+  params:
+    description: "Access and work with HCUP resources including CCSR mapping files and Summary Trend Tables from AHRQ HCUP. Map ICD-10 codes to CCSR categories, download trend tables, and access HCUP metadata."
+    keywords: ["R package", "HCUP", "CCSR", "ICD-10", "AHRQ", "healthcare data", "clinical classifications", "diagnosis codes", "procedure codes", "health services research", "trend tables", "hospital utilization"]
+
+navbar:
+  structure:
+    left: [intro, reference, articles, news]
+    right: [search]
+  bg: transparent
+  components:
+    news:
+      text: "News"
+      href: news/index.html
+
+news:
+  one_page: true
+  title: "News"
+
+reference:
+  - title: Data Download Functions
+    desc: Functions for downloading HCUP resources
+    contents:
+      - download_ccsr
+      - download_trend_tables
+      - list_ccsr_versions
+      - ccsr_changelog
+  - title: Data Import Functions
+    desc: Functions for reading downloaded files
+    contents:
+      - read_ccsr
+      - read_trend_table
+      - list_trend_table_sheets
+  - title: Mapping Functions
+    desc: Functions for mapping ICD-10 codes to CCSR categories
+    contents:
+      - ccsr_map
+      - get_ccsr_description
+  - title: Utility Functions
+    desc: Helper functions for citations and utilities
+    contents:
+      - hcup_citation
+

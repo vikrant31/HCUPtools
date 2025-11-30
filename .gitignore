@@ -1,0 +1,53 @@
+# R
+.Rhistory
+.Rapp.history
+.RData
+.Ruserdata
+*.Rproj
+.Rproj.user/
+
+# Package files
+*.tar.gz
+*.zip
+.Rcheck/
+# inst/doc/ - DO NOT IGNORE - needed for CRAN vignette
+vignettes/*.html
+vignettes/*.pdf
+
+# Documentation
+docs/
+
+# Cache
+HCUPtools_cache/
+*.cache
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
+Rplots.pdf
+Rplots*.pdf
+
+# Test scripts (development only)
+test_package.R
+test_package_comprehensive.R
+test_package_quick.R
+README_TESTING.md
+
+# Build artifacts
+*.Rcheck/
+*.tar.gz
+*.zip
+
+# Logo generation (keep script, ignore output if regenerated)
+# man/figures/logo.png is tracked, but we keep it

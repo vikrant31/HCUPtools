@@ -1,0 +1,48 @@
+Package: HCUPtools
+Type: Package
+Title: Access and Work with HCUP Resources and Datasets
+Version: 1.0.0
+Depends: R (>= 4.1.0)
+Authors@R: person("Vikrant Dev Rathore", email = "rathore.vikrant@gmail.com", role = c("aut", "cre"))
+Description: A comprehensive R package for accessing and working with publicly 
+    available and free resources from the Agency for Healthcare Research and Quality 
+    (AHRQ) Healthcare Cost and Utilization Project (HCUP). The package provides 
+    streamlined access to HCUP's Clinical Classifications Software Refined (CCSR) 
+    mapping files and Summary Trend Tables, enabling researchers and analysts to 
+    efficiently map ICD-10-CM diagnosis codes and ICD-10-PCS procedure codes to 
+    CCSR categories and access HCUP statistical reports. Key features include: 
+    direct download from HCUP website, multiple output formats (long/wide/default), 
+    cross-classification support, version management, citation generation, and 
+    intelligent caching. The package does not redistribute HCUP data files but 
+    facilitates direct download from the official HCUP website, ensuring users 
+    always have access to the latest versions and maintain compliance with HCUP 
+    data use policies. This package only accesses free public tools and reports; 
+    it does NOT access HCUP databases (NIS, KID, SID, NEDS, etc.) that require 
+    purchase. For more information, see <https://hcup-us.ahrq.gov/>.
+License: MIT + file LICENSE
+URL: https://github.com/vikrant31/HCUPtools,
+    https://vikrant31.github.io/HCUPtools/
+BugReports: https://github.com/vikrant31/HCUPtools/issues
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+Imports:
+    httr2,
+    readr,
+    dplyr,
+    tidyr,
+    tibble,
+    utils,
+    stats,
+    rlang,
+    xml2,
+    readxl
+Suggests:
+    testthat (>= 3.0.0),
+    knitr,
+    rmarkdown,
+    pkgdown,
+    data.table,
+    pdftools
+VignetteBuilder: knitr
