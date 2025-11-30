@@ -60,17 +60,14 @@
 
     
     
-<div class="section level2">
-<h2 id="getting-started-with-hcuptools">Getting Started with HCUPtools<a class="anchor" aria-label="anchor" href="#getting-started-with-hcuptools"></a>
-</h2>
 <p><code>HCUPtools</code> is an R package for accessing and working with
 resources from the <strong>Agency for Healthcare Research and Quality
 (AHRQ) Healthcare Cost and Utilization Project (HCUP)</strong>. This
 vignette provides a comprehensive guide to using the package for common
 healthcare data analysis tasks.</p>
-<div class="section level3">
-<h3 id="installation-and-setup">Installation and Setup<a class="anchor" aria-label="anchor" href="#installation-and-setup"></a>
-</h3>
+<div class="section level2">
+<h2 id="installation-and-setup">Installation and Setup<a class="anchor" aria-label="anchor" href="#installation-and-setup"></a>
+</h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Install from CRAN</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"HCUPtools"</span><span class="op">)</span></span>
@@ -79,17 +76,17 @@ healthcare data analysis tasks.</p>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/vikrant31/HCUPtools" class="external-link">HCUPtools</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>  <span class="co"># For data manipulation examples</span></span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="part-1-downloading-ccsr-mapping-files">Part 1: Downloading CCSR Mapping Files<a class="anchor" aria-label="anchor" href="#part-1-downloading-ccsr-mapping-files"></a>
-</h3>
+<div class="section level2">
+<h2 id="part-1-downloading-ccsr-mapping-files">Part 1: Downloading CCSR Mapping Files<a class="anchor" aria-label="anchor" href="#part-1-downloading-ccsr-mapping-files"></a>
+</h2>
 <p>The Clinical Classifications Software Refined (CCSR) is a tool
 developed by AHRQ/HCUP to categorize ICD-10-CM diagnosis codes and
 ICD-10-PCS procedure codes into clinically meaningful categories. The
 <code><a href="../reference/download_ccsr.html">download_ccsr()</a></code> function provides direct access to these
 mapping files.</p>
-<div class="section level4">
-<h4 id="download-latest-version">Download Latest Version<a class="anchor" aria-label="anchor" href="#download-latest-version"></a>
-</h4>
+<div class="section level3">
+<h3 id="download-latest-version">Download Latest Version<a class="anchor" aria-label="anchor" href="#download-latest-version"></a>
+</h3>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Download the latest diagnosis CCSR mapping file</span></span>
 <span><span class="va">dx_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/download_ccsr.html">download_ccsr</a></span><span class="op">(</span><span class="st">"diagnosis"</span><span class="op">)</span></span>
@@ -97,17 +94,17 @@ mapping files.</p>
 <span><span class="co"># Download the latest procedure CCSR mapping file</span></span>
 <span><span class="va">pr_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/download_ccsr.html">download_ccsr</a></span><span class="op">(</span><span class="st">"procedure"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level4">
-<h4 id="download-specific-version">Download Specific Version<a class="anchor" aria-label="anchor" href="#download-specific-version"></a>
-</h4>
+<div class="section level3">
+<h3 id="download-specific-version">Download Specific Version<a class="anchor" aria-label="anchor" href="#download-specific-version"></a>
+</h3>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Download a specific version (useful for reproducibility)</span></span>
 <span><span class="va">dx_map_v2025</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/download_ccsr.html">download_ccsr</a></span><span class="op">(</span><span class="st">"diagnosis"</span>, version <span class="op">=</span> <span class="st">"v2025.1"</span><span class="op">)</span></span>
 <span><span class="va">pr_map_v2025</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/download_ccsr.html">download_ccsr</a></span><span class="op">(</span><span class="st">"procedure"</span>, version <span class="op">=</span> <span class="st">"v2025.1"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level4">
-<h4 id="list-available-versions">List Available Versions<a class="anchor" aria-label="anchor" href="#list-available-versions"></a>
-</h4>
+<div class="section level3">
+<h3 id="list-available-versions">List Available Versions<a class="anchor" aria-label="anchor" href="#list-available-versions"></a>
+</h3>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># List all available versions</span></span>
 <span><span class="va">all_versions</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/list_ccsr_versions.html">list_ccsr_versions</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -120,16 +117,16 @@ mapping files.</p>
 <span><span class="va">pr_versions</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/list_ccsr_versions.html">list_ccsr_versions</a></span><span class="op">(</span><span class="st">"procedure"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
-<div class="section level3">
-<h3 id="part-2-mapping-icd-10-codes-to-ccsr-categories">Part 2: Mapping ICD-10 Codes to CCSR Categories<a class="anchor" aria-label="anchor" href="#part-2-mapping-icd-10-codes-to-ccsr-categories"></a>
-</h3>
+<div class="section level2">
+<h2 id="part-2-mapping-icd-10-codes-to-ccsr-categories">Part 2: Mapping ICD-10 Codes to CCSR Categories<a class="anchor" aria-label="anchor" href="#part-2-mapping-icd-10-codes-to-ccsr-categories"></a>
+</h2>
 <p>Once you have downloaded a mapping file, you can use
 <code><a href="../reference/ccsr_map.html">ccsr_map()</a></code> to map ICD-10 codes to CCSR categories. This
 function supports multiple output formats to accommodate different
 analytical needs.</p>
-<div class="section level4">
-<h4 id="prepare-sample-data">Prepare Sample Data<a class="anchor" aria-label="anchor" href="#prepare-sample-data"></a>
-</h4>
+<div class="section level3">
+<h3 id="prepare-sample-data">Prepare Sample Data<a class="anchor" aria-label="anchor" href="#prepare-sample-data"></a>
+</h3>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Create sample patient data with ICD-10 diagnosis codes</span></span>
 <span><span class="va">patient_data</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span>
@@ -142,9 +139,9 @@ analytical needs.</p>
 <span>               <span class="st">"I50.9"</span>, <span class="st">"N18.6"</span>, <span class="st">"E78.5"</span>, <span class="st">"I25.10"</span>, <span class="st">"J44.1"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level4">
-<h4 id="long-format-default">Long Format (Default)<a class="anchor" aria-label="anchor" href="#long-format-default"></a>
-</h4>
+<div class="section level3">
+<h3 id="long-format-default">Long Format (Default)<a class="anchor" aria-label="anchor" href="#long-format-default"></a>
+</h3>
 <p>The long format duplicates records for each assigned CCSR category.
 This is essential for cross-classification analysis where you need to
 count all assigned categories.</p>
@@ -169,9 +166,9 @@ Count how many times each CCSR category appears - Analyze
 cross-classifications (one ICD-10 code mapping to multiple CCSR
 categories) - Create frequency tables of CCSR categories</p>
 </div>
-<div class="section level4">
-<h4 id="wide-format">Wide Format<a class="anchor" aria-label="anchor" href="#wide-format"></a>
-</h4>
+<div class="section level3">
+<h3 id="wide-format">Wide Format<a class="anchor" aria-label="anchor" href="#wide-format"></a>
+</h3>
 <p>The wide format creates multiple columns (CCSR_1, CCSR_2, etc.) for
 multiple categories, keeping one row per ICD-10 code.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
@@ -190,9 +187,9 @@ Keep all CCSR categories for each patient in a single row - Perform
 patient-level analysis - Maintain the original data structure with
 additional CCSR columns</p>
 </div>
-<div class="section level4">
-<h4 id="default-category-only">Default Category Only<a class="anchor" aria-label="anchor" href="#default-category-only"></a>
-</h4>
+<div class="section level3">
+<h3 id="default-category-only">Default Category Only<a class="anchor" aria-label="anchor" href="#default-category-only"></a>
+</h3>
 <p>For diagnosis codes, CCSR assigns a “default” category that is
 recommended for principal diagnosis analysis. Use
 <code>default_only = TRUE</code> to extract only this default
@@ -214,9 +211,9 @@ diagnosis analysis - Maintain one-to-one mapping (one ICD-10 code = one
 CCSR category)</p>
 </div>
 </div>
-<div class="section level3">
-<h3 id="part-3-getting-ccsr-descriptions">Part 3: Getting CCSR Descriptions<a class="anchor" aria-label="anchor" href="#part-3-getting-ccsr-descriptions"></a>
-</h3>
+<div class="section level2">
+<h2 id="part-3-getting-ccsr-descriptions">Part 3: Getting CCSR Descriptions<a class="anchor" aria-label="anchor" href="#part-3-getting-ccsr-descriptions"></a>
+</h2>
 <p>To understand what CCSR categories mean, use
 <code><a href="../reference/get_ccsr_description.html">get_ccsr_description()</a></code>:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
@@ -231,9 +228,9 @@ CCSR category)</p>
 <span>  type <span class="op">=</span> <span class="st">"diagnosis"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="part-4-working-with-procedure-codes">Part 4: Working with Procedure Codes<a class="anchor" aria-label="anchor" href="#part-4-working-with-procedure-codes"></a>
-</h3>
+<div class="section level2">
+<h2 id="part-4-working-with-procedure-codes">Part 4: Working with Procedure Codes<a class="anchor" aria-label="anchor" href="#part-4-working-with-procedure-codes"></a>
+</h2>
 <p>The package also supports ICD-10-PCS procedure codes:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Download procedure mapping</span></span>
@@ -257,9 +254,9 @@ CCSR category)</p>
 <span><span class="co"># View the results</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mapped_procedures</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="part-5-complete-analysis-workflow">Part 5: Complete Analysis Workflow<a class="anchor" aria-label="anchor" href="#part-5-complete-analysis-workflow"></a>
-</h3>
+<div class="section level2">
+<h2 id="part-5-complete-analysis-workflow">Part 5: Complete Analysis Workflow<a class="anchor" aria-label="anchor" href="#part-5-complete-analysis-workflow"></a>
+</h2>
 <p>Here’s a complete workflow for analyzing CCSR categories in a
 dataset:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
@@ -291,9 +288,9 @@ dataset:</p>
 <span><span class="co"># Step 5: View the final results</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">ccsr_counts_with_desc</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="part-6-downloading-hcup-summary-trend-tables">Part 6: Downloading HCUP Summary Trend Tables<a class="anchor" aria-label="anchor" href="#part-6-downloading-hcup-summary-trend-tables"></a>
-</h3>
+<div class="section level2">
+<h2 id="part-6-downloading-hcup-summary-trend-tables">Part 6: Downloading HCUP Summary Trend Tables<a class="anchor" aria-label="anchor" href="#part-6-downloading-hcup-summary-trend-tables"></a>
+</h2>
 <p>The package also provides access to HCUP Summary Trend Tables, which
 contain aggregated information on hospital utilization trends:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
@@ -316,9 +313,9 @@ elective/non-elective stays) - Inpatient service lines
 conditions) - ED treat-and-release visits</p>
 <p>For more information, see: <a href="https://hcup-us.ahrq.gov/reports/trendtables/summarytrendtables.jsp" class="external-link">HCUP
 Summary Trend Tables</a></p>
-<div class="section level4">
-<h4 id="reading-trend-tables">Reading Trend Tables<a class="anchor" aria-label="anchor" href="#reading-trend-tables"></a>
-</h4>
+<div class="section level3">
+<h3 id="reading-trend-tables">Reading Trend Tables<a class="anchor" aria-label="anchor" href="#reading-trend-tables"></a>
+</h3>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Read the trend table data</span></span>
 <span><span class="va">trend_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_trend_table.html">read_trend_table</a></span><span class="op">(</span><span class="va">table_path</span>, sheet <span class="op">=</span> <span class="st">"National"</span><span class="op">)</span></span>
@@ -332,9 +329,9 @@ Summary Trend Tables</a></p>
 <span><span class="va">california_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_trend_table.html">read_trend_table</a></span><span class="op">(</span><span class="va">table_path</span>, sheet <span class="op">=</span> <span class="st">"California"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
-<div class="section level3">
-<h3 id="part-7-accessing-ccsr-change-logs">Part 7: Accessing CCSR Change Logs<a class="anchor" aria-label="anchor" href="#part-7-accessing-ccsr-change-logs"></a>
-</h3>
+<div class="section level2">
+<h2 id="part-7-accessing-ccsr-change-logs">Part 7: Accessing CCSR Change Logs<a class="anchor" aria-label="anchor" href="#part-7-accessing-ccsr-change-logs"></a>
+</h2>
 <p>View changes between CCSR versions:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Get change log as data table (default)</span></span>
@@ -350,9 +347,9 @@ Summary Trend Tables</a></p>
 <span><span class="co"># Download change log file</span></span>
 <span><span class="va">changelog_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ccsr_changelog.html">ccsr_changelog</a></span><span class="op">(</span>version <span class="op">=</span> <span class="st">"v2026.1"</span>, format <span class="op">=</span> <span class="st">"download"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="part-8-generating-citations">Part 8: Generating Citations<a class="anchor" aria-label="anchor" href="#part-8-generating-citations"></a>
-</h3>
+<div class="section level2">
+<h2 id="part-8-generating-citations">Part 8: Generating Citations<a class="anchor" aria-label="anchor" href="#part-8-generating-citations"></a>
+</h2>
 <p>When using HCUP data in publications, always cite the source
 properly:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
@@ -369,9 +366,9 @@ properly:</p>
 <span><span class="va">citation_obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/hcup_citation.html">hcup_citation</a></span><span class="op">(</span>format <span class="op">=</span> <span class="st">"r"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">citation_obj</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="part-9-reading-downloaded-files">Part 9: Reading Downloaded Files<a class="anchor" aria-label="anchor" href="#part-9-reading-downloaded-files"></a>
-</h3>
+<div class="section level2">
+<h2 id="part-9-reading-downloaded-files">Part 9: Reading Downloaded Files<a class="anchor" aria-label="anchor" href="#part-9-reading-downloaded-files"></a>
+</h2>
 <p>If you’ve already downloaded files, you can read them directly:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Read CCSR file from various formats</span></span>
@@ -386,12 +383,12 @@ properly:</p>
 <span>  sheet <span class="op">=</span> <span class="st">"National"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 </div>
+<div class="section level2">
+<h2 id="important-notes">Important Notes<a class="anchor" aria-label="anchor" href="#important-notes"></a>
+</h2>
 <div class="section level3">
-<h3 id="important-notes">Important Notes<a class="anchor" aria-label="anchor" href="#important-notes"></a>
+<h3 id="data-download">Data Download<a class="anchor" aria-label="anchor" href="#data-download"></a>
 </h3>
-<div class="section level4">
-<h4 id="data-download">Data Download<a class="anchor" aria-label="anchor" href="#data-download"></a>
-</h4>
 <ul>
 <li>The package downloads data directly from HCUP, so an internet
 connection is required for the first download</li>
@@ -399,18 +396,18 @@ connection is required for the first download</li>
 <li>Set <code>cache = FALSE</code> to disable caching</li>
 </ul>
 </div>
-<div class="section level4">
-<h4 id="cross-classification">Cross-Classification<a class="anchor" aria-label="anchor" href="#cross-classification"></a>
-</h4>
+<div class="section level3">
+<h3 id="cross-classification">Cross-Classification<a class="anchor" aria-label="anchor" href="#cross-classification"></a>
+</h3>
 <ul>
 <li>One ICD-10 code can map to multiple CCSR categories</li>
 <li>Use long format to see all mappings</li>
 <li>Use default category for principal diagnosis analysis</li>
 </ul>
 </div>
-<div class="section level4">
-<h4 id="default-categories">Default Categories<a class="anchor" aria-label="anchor" href="#default-categories"></a>
-</h4>
+<div class="section level3">
+<h3 id="default-categories">Default Categories<a class="anchor" aria-label="anchor" href="#default-categories"></a>
+</h3>
 <ul>
 <li>For diagnosis codes, CCSR assigns a default category recommended for
 principal diagnosis analysis</li>
@@ -418,9 +415,9 @@ principal diagnosis analysis</li>
 category</li>
 </ul>
 </div>
-<div class="section level4">
-<h4 id="performance">Performance<a class="anchor" aria-label="anchor" href="#performance"></a>
-</h4>
+<div class="section level3">
+<h3 id="performance">Performance<a class="anchor" aria-label="anchor" href="#performance"></a>
+</h3>
 <ul>
 <li>CCSR mapping files contain ~75,000 rows</li>
 <li>Consider using <code>as_data_table = TRUE</code> in
@@ -429,9 +426,9 @@ large datasets</li>
 </ul>
 </div>
 </div>
-<div class="section level3">
-<h3 id="legal-and-compliance">Legal and Compliance<a class="anchor" aria-label="anchor" href="#legal-and-compliance"></a>
-</h3>
+<div class="section level2">
+<h2 id="legal-and-compliance">Legal and Compliance<a class="anchor" aria-label="anchor" href="#legal-and-compliance"></a>
+</h2>
 <p><strong>Important Disclaimer:</strong> This package is an
 independent, non-commercial tool developed by a third party. It is
 <strong>not affiliated with, endorsed by, or supported by AHRQ or HCUP
@@ -450,17 +447,17 @@ reports (free download)</li>
 <p><strong>Critical:</strong> This package does <strong>NOT</strong>
 access any HCUP databases (NIS, KID, SID, NEDS, etc.) that require
 purchase through the HCUP Central Distributor.</p>
-<div class="section level4">
-<h4 id="user-responsibilities">User Responsibilities<a class="anchor" aria-label="anchor" href="#user-responsibilities"></a>
-</h4>
+<div class="section level3">
+<h3 id="user-responsibilities">User Responsibilities<a class="anchor" aria-label="anchor" href="#user-responsibilities"></a>
+</h3>
 <p>Users are responsible for: - Ensuring compliance with all applicable
 HCUP Data Use Agreements (DUAs) - Verifying the accuracy of results -
 Citing the appropriate AHRQ/HCUP sources in publications - Understanding
 and adhering to all HCUP data usage restrictions</p>
 </div>
-<div class="section level4">
-<h4 id="essential-resources">Essential Resources<a class="anchor" aria-label="anchor" href="#essential-resources"></a>
-</h4>
+<div class="section level3">
+<h3 id="essential-resources">Essential Resources<a class="anchor" aria-label="anchor" href="#essential-resources"></a>
+</h3>
 <ul>
 <li><a href="https://hcup-us.ahrq.gov/tech_assist/dua.jsp" class="external-link">HCUP Data Use
 Agreement Training</a></li>
@@ -475,9 +472,9 @@ Summary Trend Tables</a></li>
 </ul>
 </div>
 </div>
-<div class="section level3">
-<h3 id="additional-resources">Additional Resources<a class="anchor" aria-label="anchor" href="#additional-resources"></a>
-</h3>
+<div class="section level2">
+<h2 id="additional-resources">Additional Resources<a class="anchor" aria-label="anchor" href="#additional-resources"></a>
+</h2>
 <ul>
 <li>
 <strong>Package GitHub</strong>: <a href="https://github.com/vikrant31/HCUPtools" class="external-link uri">https://github.com/vikrant31/HCUPtools</a>
@@ -495,7 +492,6 @@ Summary Trend Tables</a></li>
 <strong>HCUP Summary Trend Tables</strong>: <a href="https://hcup-us.ahrq.gov/reports/trendtables/summarytrendtables.jsp" class="external-link uri">https://hcup-us.ahrq.gov/reports/trendtables/summarytrendtables.jsp</a>
 </li>
 </ul>
-</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

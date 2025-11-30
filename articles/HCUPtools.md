@@ -1,14 +1,12 @@
 # Getting Started with HCUPtools
 
-## Getting Started with HCUPtools
-
 `HCUPtools` is an R package for accessing and working with resources
 from the **Agency for Healthcare Research and Quality (AHRQ) Healthcare
 Cost and Utilization Project (HCUP)**. This vignette provides a
 comprehensive guide to using the package for common healthcare data
 analysis tasks.
 
-### Installation and Setup
+## Installation and Setup
 
 ``` r
 # Install from CRAN
@@ -19,7 +17,7 @@ library(HCUPtools)
 library(dplyr)  # For data manipulation examples
 ```
 
-### Part 1: Downloading CCSR Mapping Files
+## Part 1: Downloading CCSR Mapping Files
 
 The Clinical Classifications Software Refined (CCSR) is a tool developed
 by AHRQ/HCUP to categorize ICD-10-CM diagnosis codes and ICD-10-PCS
@@ -27,7 +25,7 @@ procedure codes into clinically meaningful categories. The
 [`download_ccsr()`](https://vikrant31.github.io/HCUPtools/reference/download_ccsr.md)
 function provides direct access to these mapping files.
 
-#### Download Latest Version
+### Download Latest Version
 
 ``` r
 # Download the latest diagnosis CCSR mapping file
@@ -37,7 +35,7 @@ dx_map <- download_ccsr("diagnosis")
 pr_map <- download_ccsr("procedure")
 ```
 
-#### Download Specific Version
+### Download Specific Version
 
 ``` r
 # Download a specific version (useful for reproducibility)
@@ -45,7 +43,7 @@ dx_map_v2025 <- download_ccsr("diagnosis", version = "v2025.1")
 pr_map_v2025 <- download_ccsr("procedure", version = "v2025.1")
 ```
 
-#### List Available Versions
+### List Available Versions
 
 ``` r
 # List all available versions
@@ -59,14 +57,14 @@ dx_versions <- list_ccsr_versions("diagnosis")
 pr_versions <- list_ccsr_versions("procedure")
 ```
 
-### Part 2: Mapping ICD-10 Codes to CCSR Categories
+## Part 2: Mapping ICD-10 Codes to CCSR Categories
 
 Once you have downloaded a mapping file, you can use
 [`ccsr_map()`](https://vikrant31.github.io/HCUPtools/reference/ccsr_map.md)
 to map ICD-10 codes to CCSR categories. This function supports multiple
 output formats to accommodate different analytical needs.
 
-#### Prepare Sample Data
+### Prepare Sample Data
 
 ``` r
 # Create sample patient data with ICD-10 diagnosis codes
@@ -81,7 +79,7 @@ patient_data <- tibble::tibble(
 )
 ```
 
-#### Long Format (Default)
+### Long Format (Default)
 
 The long format duplicates records for each assigned CCSR category. This
 is essential for cross-classification analysis where you need to count
@@ -110,7 +108,7 @@ times each CCSR category appears - Analyze cross-classifications (one
 ICD-10 code mapping to multiple CCSR categories) - Create frequency
 tables of CCSR categories
 
-#### Wide Format
+### Wide Format
 
 The wide format creates multiple columns (CCSR_1, CCSR_2, etc.) for
 multiple categories, keeping one row per ICD-10 code.
@@ -133,7 +131,7 @@ categories for each patient in a single row - Perform patient-level
 analysis - Maintain the original data structure with additional CCSR
 columns
 
-#### Default Category Only
+### Default Category Only
 
 For diagnosis codes, CCSR assigns a “default” category that is
 recommended for principal diagnosis analysis. Use `default_only = TRUE`
@@ -157,7 +155,7 @@ principal diagnoses only - Follow HCUP recommendations for diagnosis
 analysis - Maintain one-to-one mapping (one ICD-10 code = one CCSR
 category)
 
-### Part 3: Getting CCSR Descriptions
+## Part 3: Getting CCSR Descriptions
 
 To understand what CCSR categories mean, use
 [`get_ccsr_description()`](https://vikrant31.github.io/HCUPtools/reference/get_ccsr_description.md):
@@ -175,7 +173,7 @@ descriptions_auto <- get_ccsr_description(
 )
 ```
 
-### Part 4: Working with Procedure Codes
+## Part 4: Working with Procedure Codes
 
 The package also supports ICD-10-PCS procedure codes:
 
@@ -202,7 +200,7 @@ mapped_procedures <- ccsr_map(
 head(mapped_procedures)
 ```
 
-### Part 5: Complete Analysis Workflow
+## Part 5: Complete Analysis Workflow
 
 Here’s a complete workflow for analyzing CCSR categories in a dataset:
 
@@ -236,7 +234,7 @@ ccsr_counts_with_desc <- ccsr_counts |>
 print(ccsr_counts_with_desc)
 ```
 
-### Part 6: Downloading HCUP Summary Trend Tables
+## Part 6: Downloading HCUP Summary Trend Tables
 
 The package also provides access to HCUP Summary Trend Tables, which
 contain aggregated information on hospital utilization trends:
@@ -265,7 +263,7 @@ conditions) - ED treat-and-release visits
 For more information, see: [HCUP Summary Trend
 Tables](https://hcup-us.ahrq.gov/reports/trendtables/summarytrendtables.jsp)
 
-#### Reading Trend Tables
+### Reading Trend Tables
 
 ``` r
 # Read the trend table data
@@ -280,7 +278,7 @@ print(sheets)
 california_data <- read_trend_table(table_path, sheet = "California")
 ```
 
-### Part 7: Accessing CCSR Change Logs
+## Part 7: Accessing CCSR Change Logs
 
 View changes between CCSR versions:
 
@@ -299,7 +297,7 @@ ccsr_changelog(version = "v2026.1", format = "view")
 changelog_file <- ccsr_changelog(version = "v2026.1", format = "download")
 ```
 
-### Part 8: Generating Citations
+## Part 8: Generating Citations
 
 When using HCUP data in publications, always cite the source properly:
 
@@ -318,7 +316,7 @@ citation_obj <- hcup_citation(format = "r")
 print(citation_obj)
 ```
 
-### Part 9: Reading Downloaded Files
+## Part 9: Reading Downloaded Files
 
 If you’ve already downloaded files, you can read them directly:
 
@@ -336,28 +334,28 @@ national_data <- read_trend_table(
 )
 ```
 
-### Important Notes
+## Important Notes
 
-#### Data Download
+### Data Download
 
 - The package downloads data directly from HCUP, so an internet
   connection is required for the first download
 - Downloaded files are cached by default to avoid re-downloading
 - Set `cache = FALSE` to disable caching
 
-#### Cross-Classification
+### Cross-Classification
 
 - One ICD-10 code can map to multiple CCSR categories
 - Use long format to see all mappings
 - Use default category for principal diagnosis analysis
 
-#### Default Categories
+### Default Categories
 
 - For diagnosis codes, CCSR assigns a default category recommended for
   principal diagnosis analysis
 - Use `default_only = TRUE` to extract only the default category
 
-#### Performance
+### Performance
 
 - CCSR mapping files contain ~75,000 rows
 - Consider using `as_data_table = TRUE` in
@@ -366,7 +364,7 @@ national_data <- read_trend_table(
   [`read_trend_table()`](https://vikrant31.github.io/HCUPtools/reference/read_trend_table.md)
   for very large datasets
 
-### Legal and Compliance
+## Legal and Compliance
 
 **Important Disclaimer:** This package is an independent, non-commercial
 tool developed by a third party. It is **not affiliated with, endorsed
@@ -384,14 +382,14 @@ resources:
 KID, SID, NEDS, etc.) that require purchase through the HCUP Central
 Distributor.
 
-#### User Responsibilities
+### User Responsibilities
 
 Users are responsible for: - Ensuring compliance with all applicable
 HCUP Data Use Agreements (DUAs) - Verifying the accuracy of results -
 Citing the appropriate AHRQ/HCUP sources in publications - Understanding
 and adhering to all HCUP data usage restrictions
 
-#### Essential Resources
+### Essential Resources
 
 - [HCUP Data Use Agreement
   Training](https://hcup-us.ahrq.gov/tech_assist/dua.jsp)
@@ -404,7 +402,7 @@ and adhering to all HCUP data usage restrictions
 - [HCUP Summary Trend
   Tables](https://hcup-us.ahrq.gov/reports/trendtables/summarytrendtables.jsp)
 
-### Additional Resources
+## Additional Resources
 
 - **Package GitHub**: <https://github.com/vikrant31/HCUPtools>
 - **HCUP Homepage**: <https://hcup-us.ahrq.gov/>
