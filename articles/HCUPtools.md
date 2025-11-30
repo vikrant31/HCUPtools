@@ -411,6 +411,6 @@ and adhering to all HCUP data usage restrictions
 - **CCSR Overview**:
   <https://hcup-us.ahrq.gov/toolssoftware/ccsr/ccs_refined.jsp>
 - **HCUP CCSR Tools**:
-  <https://hcup-us.ahrq.gov/toolssoftware/ccsr/ccsr.jsp>
+  <https://hcup-us.ahrq.gov/toolssoftware/ccsr/ccs_refined.jsp>
 - **HCUP Summary Trend Tables**:
   <https://hcup-us.ahrq.gov/reports/trendtables/summarytrendtables.jsp>

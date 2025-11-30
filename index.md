@@ -345,7 +345,7 @@ Users are responsible for:
 - [HCUP Summary Trend
   Tables](https://hcup-us.ahrq.gov/reports/trendtables/summarytrendtables.jsp)
 - [HCUP Tools and
-  Software](https://hcup-us.ahrq.gov/toolssoftware/ccsr/ccsr.jsp)
+  Software](https://hcup-us.ahrq.gov/toolssoftware/ccsr/ccs_refined.jsp)
 
 ### Disclaimer
 
@@ -444,4 +444,4 @@ Contributions are welcome! Please feel free to:
 **Note**: This package is under active development. Features and
 function signatures may change in future versions. For the most
 up-to-date information, please visit the [GitHub
-repository](https://github.com/vikrant31/HCUPtools). \# Trigger rebuild
+repository](https://github.com/vikrant31/HCUPtools).
