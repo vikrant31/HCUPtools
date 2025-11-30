@@ -31,7 +31,115 @@
       <small>Source: <a href="https://github.com/vikrant31/HCUPtools/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
-  </main></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.0.0" id="version-100-2025-11-29">Version 1.0.0 (2025-11-29)<a class="anchor" aria-label="anchor" href="#version-100-2025-11-29"></a></h2>
+<div class="section level3">
+<h3 id="features-1-0-0">Features<a class="anchor" aria-label="anchor" href="#features-1-0-0"></a></h3>
+<div class="section level4">
+<h4 id="ccsr-mapping-functions-1-0-0">CCSR Mapping Functions<a class="anchor" aria-label="anchor" href="#ccsr-mapping-functions-1-0-0"></a></h4>
+<ul><li>
+<strong><code><a href="../reference/download_ccsr.html">download_ccsr()</a></code></strong>: Download CCSR mapping files directly from HCUP website
+<ul><li>Support for both diagnosis (ICD-10-CM) and procedure (ICD-10-PCS) mappings</li>
+<li>Automatic version detection and “latest” version support</li>
+<li>Intelligent caching to avoid redundant downloads</li>
+<li>Proper encoding and leading zero preservation for ICD-10 codes</li>
+</ul></li>
+<li>
+<strong><code><a href="../reference/read_ccsr.html">read_ccsr()</a></code></strong>: Read CCSR mapping files from disk
+<ul><li>Support for ZIP, CSV, Excel, and directory formats</li>
+<li>Automatic cache discovery and interactive file selection</li>
+<li>Optional data.table output for large datasets</li>
+</ul></li>
+<li>
+<strong><code><a href="../reference/ccsr_map.html">ccsr_map()</a></code></strong>: Map ICD-10 codes to CCSR categories
+<ul><li>Multiple output formats: long (default), wide, and default-only</li>
+<li>Support for cross-classification (one-to-many mappings)</li>
+<li>Default category extraction for principal diagnosis analysis</li>
+<li>Automatic type inference (diagnosis vs. procedure)</li>
+</ul></li>
+<li>
+<strong><code><a href="../reference/get_ccsr_description.html">get_ccsr_description()</a></code></strong>: Retrieve clinical descriptions for CCSR codes
+<ul><li>Automatic download if mapping file not provided</li>
+<li>Support for both diagnosis and procedure codes</li>
+<li>Returns comprehensive description data frames</li>
+</ul></li>
+<li>
+<strong><code><a href="../reference/list_ccsr_versions.html">list_ccsr_versions()</a></code></strong>: List available CCSR versions
+<ul><li>Dynamic version discovery from HCUP website</li>
+<li>Support for filtering by type (diagnosis/procedure)</li>
+<li>Caching for improved performance</li>
+</ul></li>
+<li>
+<strong><code><a href="../reference/ccsr_changelog.html">ccsr_changelog()</a></code></strong>: Access CCSR change logs
+<ul><li>Multiple formats: URL, text, view (PDF), download, and read (data table)</li>
+<li>Interactive selection of change log files</li>
+<li>Support for version ranges and specific versions</li>
+<li>Automatic discovery of available change logs</li>
+</ul></li>
+</ul></div>
+<div class="section level4">
+<h4 id="hcup-summary-trend-tables-functions-1-0-0">HCUP Summary Trend Tables Functions<a class="anchor" aria-label="anchor" href="#hcup-summary-trend-tables-functions-1-0-0"></a></h4>
+<ul><li>
+<strong><code><a href="../reference/download_trend_tables.html">download_trend_tables()</a></code></strong>: Download HCUP Summary Trend Tables
+<ul><li>Interactive menu for table selection</li>
+<li>Support for downloading all tables as ZIP file</li>
+<li>Automatic fallback to individual downloads if ZIP unavailable</li>
+<li>Dynamic discovery of available tables from HCUP website</li>
+</ul></li>
+<li>
+<strong><code><a href="../reference/read_trend_table.html">read_trend_table()</a></code></strong>: Read Summary Trend Table Excel files
+<ul><li>Automatic cache discovery and interactive file selection</li>
+<li>Interactive sheet selection (National, states, etc.)</li>
+<li>Automatic metadata sheet detection and filtering</li>
+<li>Support for data.table output</li>
+</ul></li>
+<li>
+<strong><code><a href="../reference/list_trend_table_sheets.html">list_trend_table_sheets()</a></code></strong>: List available sheets in trend table files
+<ul><li>Identifies data sheets vs. metadata sheets</li>
+<li>Provides sheet recommendations</li>
+</ul></li>
+</ul></div>
+<div class="section level4">
+<h4 id="utility-functions-1-0-0">Utility Functions<a class="anchor" aria-label="anchor" href="#utility-functions-1-0-0"></a></h4>
+<ul><li>
+<strong><code><a href="../reference/hcup_citation.html">hcup_citation()</a></code></strong>: Generate proper citations for HCUP resources
+<ul><li>Support for CCSR and Summary Trend Tables</li>
+<li>Multiple formats: text, BibTeX, and R citation objects</li>
+<li>Automatic version detection for latest citations</li>
+<li>Compliant with HCUP publishing requirements</li>
+</ul></li>
+</ul></div>
+</div>
+<div class="section level3">
+<h3 id="technical-details-1-0-0">Technical Details<a class="anchor" aria-label="anchor" href="#technical-details-1-0-0"></a></h3>
+<ul><li>UTF-8 encoding support for proper handling of special characters</li>
+<li>ICD-10 codes preserved as character strings with leading zeros</li>
+<li>Intelligent file caching to reduce network requests</li>
+<li>Comprehensive error messages and validation</li>
+<li>User-friendly interactive selection for files and options</li>
+<li>Support for tibbles and optional data.table output</li>
+<li>Automatic latest version detection and historical version support</li>
+</ul></div>
+<div class="section level3">
+<h3 id="documentation-1-0-0">Documentation<a class="anchor" aria-label="anchor" href="#documentation-1-0-0"></a></h3>
+<ul><li>Comprehensive README with usage examples</li>
+<li>Detailed function documentation with roxygen2</li>
+<li>Vignette with complete workflow examples</li>
+<li>Legal disclaimer and compliance information</li>
+<li>Proper citation examples</li>
+</ul></div>
+<div class="section level3">
+<h3 id="compliance-1-0-0">Compliance<a class="anchor" aria-label="anchor" href="#compliance-1-0-0"></a></h3>
+<ul><li>Only accesses publicly available, free HCUP resources</li>
+<li>Does NOT access paid HCUP databases (NIS, KID, SID, NEDS, etc.)</li>
+<li>Facilitates direct download from official HCUP website</li>
+<li>Includes proper legal disclaimers and user responsibility statements</li>
+<li>Provides links to all relevant HCUP policies and agreements</li>
+<li>Package is not affiliated with AHRQ/HCUP</li>
+</ul></div>
+</div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">
