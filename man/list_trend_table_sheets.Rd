@@ -16,7 +16,7 @@ A character vector of sheet names.
 Lists all available sheets in a HCUP Summary Trend Table Excel file.
 }
 \examples{
-\dontrun{
+\donttest{
 sheets <- list_trend_table_sheets("path/to/HCUP_SummaryTrendTables_T2a.xlsx")
 print(sheets)
 }

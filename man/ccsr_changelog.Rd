@@ -62,7 +62,7 @@ Change logs are typically available as PDF or text documents on the HCUP
 website. This function attempts to locate and retrieve them.
 }
 \examples{
-\dontrun{
+\donttest{
 # Get latest change log URL
 changelog_url <- ccsr_changelog(format = "url")
 

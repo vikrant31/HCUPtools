@@ -42,7 +42,7 @@
 #' extract only this default category.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Download mapping file
 #' dx_map <- download_ccsr("diagnosis")
 #'

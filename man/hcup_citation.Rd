@@ -37,7 +37,6 @@ specified. For Summary Trend Tables, the citation references the general
 HCUP Summary Trend Tables resource.
 }
 \examples{
-\dontrun{
 # Text citation for CCSR
 hcup_citation()
 
@@ -49,6 +48,5 @@ hcup_citation(resource = "trend_tables")
 
 # R citation object
 hcup_citation(format = "r")
-}
 
 }

@@ -67,7 +67,7 @@ recommended for principal diagnosis analysis. Use \code{default_only = TRUE} to
 extract only this default category.
 }
 \examples{
-\dontrun{
+\donttest{
 # Download mapping file
 dx_map <- download_ccsr("diagnosis")
 

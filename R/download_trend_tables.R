@@ -36,7 +36,7 @@
 #' https://hcup-us.ahrq.gov/reports/trendtables/summarytrendtables.jsp
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # List available tables
 #' available_tables <- download_trend_tables()
 #' print(available_tables)

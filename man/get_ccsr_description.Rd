@@ -43,7 +43,7 @@ If a description is not found for a code, it will be marked as NA in the
 result.
 }
 \examples{
-\dontrun{
+\donttest{
 # Get descriptions using downloaded mapping data
 dx_map <- download_ccsr("diagnosis")
 get_ccsr_description(c("ADM010", "NEP003", "CIR019"), map_df = dx_map)

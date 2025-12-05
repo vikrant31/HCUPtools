@@ -57,7 +57,7 @@
 #' files without needing to know the exact file path.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Automatically read latest cached diagnosis file
 #' # Assign to a variable to use the data
 #' dx_map <- read_ccsr()

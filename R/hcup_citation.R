@@ -26,7 +26,6 @@
 #' HCUP Summary Trend Tables resource.
 #'
 #' @examples
-#' \dontrun{
 #' # Text citation for CCSR
 #' hcup_citation()
 #'
@@ -38,7 +37,6 @@
 #'
 #' # R citation object
 #' hcup_citation(format = "r")
-#' }
 #'
 #' @importFrom utils person
 #' @export

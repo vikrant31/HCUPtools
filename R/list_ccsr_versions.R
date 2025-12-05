@@ -18,7 +18,7 @@
 #' cannot be accessed, the function will return an error.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # List all available versions
 #' list_ccsr_versions()
 #'
