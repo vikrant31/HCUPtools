@@ -85,9 +85,12 @@ to extract only this default category.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 # Download mapping file
 dx_map <- download_ccsr("diagnosis")
+#> Downloading from: https://hcup-us.ahrq.gov/toolssoftware/ccsr/DXCCSR-v2026-1.zip
+#> Download complete: /tmp/Rtmp6OONtw/HCUPtools_cache/DXCCSR-v2026-1.zip
+#> Reading mapping file: DXCCSR_v2026-1.csv
 
 # Create sample data
 sample_data <- tibble::tibble(
@@ -117,5 +120,5 @@ mapped_default <- ccsr_map(
   map_df = dx_map,
   default_only = TRUE
 )
-} # }
+# }
 ```

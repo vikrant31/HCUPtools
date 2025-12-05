@@ -110,28 +110,56 @@ assign the data.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 # Automatically read latest cached diagnosis file
 # Assign to a variable to use the data
 dx_map <- read_ccsr()
+#> 
+#> === Available Cached CCSR Files ===
+#> 
+#>  1. DXCCSR-v2026-1.zip (Diagnosis, v2026-1)
+#>  2. PRCCSR_v2025-1.zip (Procedure, v2025-1)
+#> 
 
 # Read specific version from cache with suggested name
 dx_map_v2025 <- read_ccsr(type = "diagnosis", version = "v2025.1", name = "dx_map_v2025")
+#> Reading cached file: DXCCSR-v2026-1.zip
 
 # Read procedure file from cache
 pr_map <- read_ccsr(type = "procedure")
+#> Reading cached file: PRCCSR_v2025-1.zip
 
 # Read from a specific file path (manual)
 dx_map <- read_ccsr("path/to/DXCCSR-v2026-1.zip")
+#> Error in read_ccsr("path/to/DXCCSR-v2026-1.zip"): File or directory not found: path/to/DXCCSR-v2026-1.zip
 
 # Read from a CSV file
 dx_map <- read_ccsr("path/to/DXCCSR_v2026_1.csv")
+#> Error in read_ccsr("path/to/DXCCSR_v2026_1.csv"): File or directory not found: path/to/DXCCSR_v2026_1.csv
 
 # Read from a directory
 dx_map <- read_ccsr("path/to/extracted_ccsr_files/")
+#> Error in read_ccsr("path/to/extracted_ccsr_files/"): File or directory not found: path/to/extracted_ccsr_files/
 
 # Use the data after assignment
 head(dx_map)
+#> # A tibble: 6 × 19
+#>   icd10cm_code icd10cm_code_description                   default_ccsr_categor…¹
+#>   <chr>        <chr>                                      <chr>                 
+#> 1 'A000'       Cholera due to Vibrio cholerae 01, biovar… 'DIG001'              
+#> 2 'A001'       Cholera due to Vibrio cholerae 01, biovar… 'DIG001'              
+#> 3 'A009'       Cholera, unspecified                       'DIG001'              
+#> 4 'A0100'      Typhoid fever, unspecified                 'DIG001'              
+#> 5 'A0101'      Typhoid meningitis                         'NVS001'              
+#> 6 'A0102'      Typhoid fever with heart involvement       'INF003'              
+#> # ℹ abbreviated name: ¹​default_ccsr_category_ip
+#> # ℹ 16 more variables: default_ccsr_category_description_ip <chr>,
+#> #   default_ccsr_category_op <chr>, default_ccsr_category_description_op <chr>,
+#> #   ccsr_category_1 <chr>, ccsr_category_1_description <chr>,
+#> #   ccsr_category_2 <chr>, ccsr_category_2_description <chr>,
+#> #   ccsr_category_3 <chr>, ccsr_category_3_description <chr>,
+#> #   ccsr_category_4 <chr>, ccsr_category_4_description <chr>, …
 nrow(dx_map)
-} # }
+#> [1] 75725
+# }
 ```

@@ -96,16 +96,71 @@ display purposes and does not automatically assign the data.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 # Automatically read from cache (shows menu if multiple files)
 # Assign to a variable to use the data
 national_data <- read_trend_table()
+#> Reading cached file: HCUP_SummaryTrendTables_T2a.xlsx
+#> Reading sheet: National
+#> New names:
+#> • `` -> `...2`
+#> • `` -> `...3`
+#> • `` -> `...4`
+#> • `` -> `...5`
+#> • `` -> `...6`
+#> • `` -> `...7`
+#> • `` -> `...8`
+#> • `` -> `...9`
+#> • `` -> `...10`
+#> • `` -> `...11`
+#> • `` -> `...12`
+#> • `` -> `...13`
+#> • `` -> `...14`
+#> • `` -> `...15`
+#> • `` -> `...16`
+#> • `` -> `...17`
+#> • `` -> `...18`
+#> • `` -> `...19`
+#> • `` -> `...20`
+#> • `` -> `...21`
+#> • `` -> `...22`
+#> • `` -> `...23`
+#> • `` -> `...24`
+#> • `` -> `...25`
 
 # Read specific table from cache with suggested name
 table_2a <- read_trend_table(table_id = "2a", name = "table_2a")
+#> Reading cached file: HCUP_SummaryTrendTables_T2a.xlsx
+#> Reading sheet: National
+#> New names:
+#> • `` -> `...2`
+#> • `` -> `...3`
+#> • `` -> `...4`
+#> • `` -> `...5`
+#> • `` -> `...6`
+#> • `` -> `...7`
+#> • `` -> `...8`
+#> • `` -> `...9`
+#> • `` -> `...10`
+#> • `` -> `...11`
+#> • `` -> `...12`
+#> • `` -> `...13`
+#> • `` -> `...14`
+#> • `` -> `...15`
+#> • `` -> `...16`
+#> • `` -> `...17`
+#> • `` -> `...18`
+#> • `` -> `...19`
+#> • `` -> `...20`
+#> • `` -> `...21`
+#> • `` -> `...22`
+#> • `` -> `...23`
+#> • `` -> `...24`
+#> • `` -> `...25`
 
 # Read from a specific file path (manual)
 national_data <- read_trend_table("path/to/HCUP_SummaryTrendTables_T2a.xlsx")
+#> Error in read_trend_table("path/to/HCUP_SummaryTrendTables_T2a.xlsx"): File not found: path/to/HCUP_SummaryTrendTables_T2a.xlsx
 
 # Read a specific sheet with custom name
 state_data <- read_trend_table(
@@ -113,13 +168,30 @@ state_data <- read_trend_table(
   sheet = "State",
   name = "state_data"
 )
+#> Error in read_trend_table("path/to/HCUP_SummaryTrendTables_T2a.xlsx",     sheet = "State", name = "state_data"): File not found: path/to/HCUP_SummaryTrendTables_T2a.xlsx
 
 # List available sheets first
 sheets <- list_trend_table_sheets("path/to/HCUP_SummaryTrendTables_T2a.xlsx")
+#> Error in list_trend_table_sheets("path/to/HCUP_SummaryTrendTables_T2a.xlsx"): File not found: path/to/HCUP_SummaryTrendTables_T2a.xlsx
 print(sheets)
+#> Error: object 'sheets' not found
 
 # Use the data after assignment
 head(national_data)
+#> # A tibble: 6 × 25
+#>   hcup_summary_trend_tab…¹ `2`   `3`   `4`   `5`   `6`   `7`   `8`   `9`   `10` 
+#>   <chr>                    <chr> <chr> <chr> <chr> <chr> <chr> <chr> <chr> <chr>
+#> 1 National - Table 2a. Al… NA    NA    NA    NA    NA    NA    NA    NA    NA   
+#> 2 Asterisks (***) indicat… NA    NA    NA    NA    NA    NA    NA    NA    NA   
+#> 3 Counts less than or equ… NA    NA    NA    NA    NA    NA    NA    NA    NA   
+#> 4 Source: Agency for Heal… NA    NA    NA    NA    NA    NA    NA    NA    NA   
+#> 5 Characteristic by Quart… 2017… 2017… 2017… 2017… 2018… 2018… 2018… 2018… 2019…
+#> 6 Number of Discharges fo… NA    NA    NA    NA    NA    NA    NA    NA    NA   
+#> # ℹ abbreviated name: ¹​hcup_summary_trend_tables
+#> # ℹ 15 more variables: `11` <chr>, `12` <chr>, `13` <chr>, `14` <chr>,
+#> #   `15` <chr>, `16` <chr>, `17` <chr>, `18` <chr>, `19` <chr>, `20` <chr>,
+#> #   `21` <chr>, `22` <chr>, `23` <chr>, `24` <chr>, `25` <chr>
 nrow(national_data)
-} # }
+#> [1] 139
+# }
 ```

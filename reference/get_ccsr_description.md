@@ -57,12 +57,30 @@ result.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 # Get descriptions using downloaded mapping data
 dx_map <- download_ccsr("diagnosis")
+#> Using cached file: /tmp/Rtmp6OONtw/HCUPtools_cache/DXCCSR-v2026-1.zip
+#> Reading mapping file: DXCCSR_v2026-1.csv
 get_ccsr_description(c("ADM010", "NEP003", "CIR019"), map_df = dx_map)
+#> Warning: No description found for 3 code(s): ADM010, NEP003, CIR019
+#> # A tibble: 3 × 2
+#>   ccsr_code description
+#>   <chr>     <chr>      
+#> 1 ADM010    NA         
+#> 2 NEP003    NA         
+#> 3 CIR019    NA         
 
 # Get descriptions without pre-downloaded data (will download automatically)
 get_ccsr_description(c("ADM010", "NEP003"), type = "diagnosis")
-} # }
+#> Downloading CCSR mapping file to extract descriptions...
+#> Using cached file: /tmp/Rtmp6OONtw/HCUPtools_cache/DXCCSR-v2026-1.zip
+#> Reading mapping file: DXCCSR_v2026-1.csv
+#> Warning: No description found for 2 code(s): ADM010, NEP003
+#> # A tibble: 2 × 2
+#>   ccsr_code description
+#>   <chr>     <chr>      
+#> 1 ADM010    NA         
+#> 2 NEP003    NA         
+# }
 ```

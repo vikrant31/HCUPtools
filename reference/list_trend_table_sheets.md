@@ -21,8 +21,10 @@ A character vector of sheet names.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 sheets <- list_trend_table_sheets("path/to/HCUP_SummaryTrendTables_T2a.xlsx")
+#> Error in list_trend_table_sheets("path/to/HCUP_SummaryTrendTables_T2a.xlsx"): File not found: path/to/HCUP_SummaryTrendTables_T2a.xlsx
 print(sheets)
-} # }
+#> Error: object 'sheets' not found
+# }
 ```

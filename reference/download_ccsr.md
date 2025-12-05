@@ -70,14 +70,22 @@ The function handles:
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 # Download latest diagnosis CCSR mapping
 dx_map <- download_ccsr("diagnosis")
+#> Using cached file: /tmp/Rtmp6OONtw/HCUPtools_cache/DXCCSR-v2026-1.zip
+#> Reading mapping file: DXCCSR_v2026-1.csv
 
 # Download specific version of procedure CCSR mapping
 pr_map <- download_ccsr("procedure", version = "v2025.1")
+#> Downloading from: https://hcup-us.ahrq.gov/toolssoftware/ccsr/PRCCSR_v2025-1.zip
+#> Download complete: /tmp/Rtmp6OONtw/HCUPtools_cache/PRCCSR_v2025-1.zip
+#> Reading mapping file: PRCCSR_v2025-1.csv
 
 # Download without caching
 dx_map <- download_ccsr("diagnosis", cache = FALSE)
-} # }
+#> Downloading from: https://hcup-us.ahrq.gov/toolssoftware/ccsr/DXCCSR-v2026-1.zip
+#> Download complete: /tmp/Rtmp6OONtw/file185c14d33ce.zip
+#> Reading mapping file: DXCCSR_v2026-1.csv
+# }
 ```

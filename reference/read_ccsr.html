@@ -130,30 +130,58 @@ purposes and does not automatically assign the data.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co"># Automatically read latest cached diagnosis file</span></span></span>
 <span class="r-in"><span><span class="co"># Assign to a variable to use the data</span></span></span>
 <span class="r-in"><span><span class="va">dx_map</span> <span class="op">&lt;-</span> <span class="fu">read_ccsr</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> === Available Cached CCSR Files ===</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  1. DXCCSR-v2026-1.zip (Diagnosis, v2026-1)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2. PRCCSR_v2025-1.zip (Procedure, v2025-1)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Read specific version from cache with suggested name</span></span></span>
 <span class="r-in"><span><span class="va">dx_map_v2025</span> <span class="op">&lt;-</span> <span class="fu">read_ccsr</span><span class="op">(</span>type <span class="op">=</span> <span class="st">"diagnosis"</span>, version <span class="op">=</span> <span class="st">"v2025.1"</span>, name <span class="op">=</span> <span class="st">"dx_map_v2025"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading cached file: DXCCSR-v2026-1.zip</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Read procedure file from cache</span></span></span>
 <span class="r-in"><span><span class="va">pr_map</span> <span class="op">&lt;-</span> <span class="fu">read_ccsr</span><span class="op">(</span>type <span class="op">=</span> <span class="st">"procedure"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading cached file: PRCCSR_v2025-1.zip</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Read from a specific file path (manual)</span></span></span>
 <span class="r-in"><span><span class="va">dx_map</span> <span class="op">&lt;-</span> <span class="fu">read_ccsr</span><span class="op">(</span><span class="st">"path/to/DXCCSR-v2026-1.zip"</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in read_ccsr("path/to/DXCCSR-v2026-1.zip"):</span> File or directory not found: path/to/DXCCSR-v2026-1.zip</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Read from a CSV file</span></span></span>
 <span class="r-in"><span><span class="va">dx_map</span> <span class="op">&lt;-</span> <span class="fu">read_ccsr</span><span class="op">(</span><span class="st">"path/to/DXCCSR_v2026_1.csv"</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in read_ccsr("path/to/DXCCSR_v2026_1.csv"):</span> File or directory not found: path/to/DXCCSR_v2026_1.csv</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Read from a directory</span></span></span>
 <span class="r-in"><span><span class="va">dx_map</span> <span class="op">&lt;-</span> <span class="fu">read_ccsr</span><span class="op">(</span><span class="st">"path/to/extracted_ccsr_files/"</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in read_ccsr("path/to/extracted_ccsr_files/"):</span> File or directory not found: path/to/extracted_ccsr_files/</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Use the data after assignment</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">dx_map</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 19</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   icd10cm_code icd10cm_code_description                   default_ccsr_categor…¹</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 'A000'       Cholera due to Vibrio cholerae 01, biovar… 'DIG001'              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 'A001'       Cholera due to Vibrio cholerae 01, biovar… 'DIG001'              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> 'A009'       Cholera, unspecified                       'DIG001'              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> 'A0100'      Typhoid fever, unspecified                 'DIG001'              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> 'A0101'      Typhoid meningitis                         'NVS001'              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> 'A0102'      Typhoid fever with heart involvement       'INF003'              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​default_ccsr_category_ip</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 16 more variables: default_ccsr_category_description_ip &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   default_ccsr_category_op &lt;chr&gt;, default_ccsr_category_description_op &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ccsr_category_1 &lt;chr&gt;, ccsr_category_1_description &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ccsr_category_2 &lt;chr&gt;, ccsr_category_2_description &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ccsr_category_3 &lt;chr&gt;, ccsr_category_3_description &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ccsr_category_4 &lt;chr&gt;, ccsr_category_4_description &lt;chr&gt;, …</span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">dx_map</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 75725</span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
