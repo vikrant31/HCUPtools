@@ -10,9 +10,6 @@ citEntry(entry = "Manual",
          note = "R package version 1.0.0",
          url = "https://CRAN.R-project.org/package=HCUPtools",
          textVersion = 
-           paste("Vikrant Dev Rathore (2025).",
-                 "HCUPtools: Access and Work with HCUP Resources and Datasets.",
-                 "R package version 1.0.0.",
-                 "<https://CRAN.R-project.org/package=HCUPtools>")
+           "Vikrant Dev Rathore (2025). HCUPtools: Access and Work with HCUP Resources and Datasets. R package version 1.0.0. <https://CRAN.R-project.org/package=HCUPtools>"
          )
 
