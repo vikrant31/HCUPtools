@@ -72,7 +72,7 @@ p1 <- ggplot(data.frame(x = 0, y = 0), aes(x = x, y = y)) +
 
 ggsave(file.path(fig_dir, "package_architecture.png"), p1, 
        width = 8, height = 6, dpi = 300)
-cat("✓ Figure 1 created\n\n")
+cat("Figure 1 created successfully\n\n")
 
 # ============================================================================
 # Figure 2: Workflow Comparison
@@ -150,7 +150,7 @@ p2 <- ggplot(data.frame(x = 0, y = 0), aes(x = x, y = y)) +
 
 ggsave(file.path(fig_dir, "workflow_comparison.png"), p2, 
        width = 10, height = 7, dpi = 300)
-cat("✓ Figure 2 created\n\n")
+cat("Figure 2 created successfully\n\n")
 
 # ============================================================================
 # Figure 3: Output Format Comparison
@@ -215,7 +215,7 @@ p3 <- grid.arrange(panel_a, panel_b, panel_c, ncol = 3,
 
 ggsave(file.path(fig_dir, "output_formats.png"), p3, 
        width = 12, height = 4, dpi = 300)
-cat("✓ Figure 3 created\n\n")
+cat("Figure 3 created successfully\n\n")
 
 # ============================================================================
 # Figure 4: HCUPtools Workflow
@@ -278,7 +278,7 @@ p4 <- ggplot(data.frame(x = 0, y = 0), aes(x = x, y = y)) +
 
 ggsave(file.path(fig_dir, "hcuptools_workflow.png"), p4, 
        width = 10, height = 7, dpi = 300)
-cat("✓ Figure 4 created\n\n")
+cat("Figure 4 created successfully\n\n")
 
 # ============================================================================
 # Figure 5: Performance Comparison
@@ -317,7 +317,7 @@ p5 <- ggplot(df_perf, aes(x = Task, y = Time, fill = Method)) +
 
 ggsave(file.path(fig_dir, "performance_comparison.png"), p5, 
        width = 10, height = 6, dpi = 300)
-cat("✓ Figure 5 created\n\n")
+cat("Figure 5 created successfully\n\n")
 
 # ============================================================================
 # Summary

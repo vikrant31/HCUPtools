@@ -22,7 +22,7 @@ if (!require("dplyr", quietly = TRUE)) {
        "  install.packages('dplyr')\n")
 }
 
-cat("✓ Packages loaded successfully\n\n")
+cat("Packages loaded successfully\n\n")
 
 # Create sample patient data for all examples
 # Using codes that are more likely to have mappings in CCSR
@@ -32,7 +32,7 @@ patient_data <- tibble::tibble(
   icd10_code = c("E11.9", "I10", "M79.3", "E78.5", "K21.9", 
                  "I50.9", "N18.6", "E78.5", "I25.10", "J44.1")
 )
-cat("✓ Sample data created with", nrow(patient_data), "patients\n")
+cat("Sample data created with", nrow(patient_data), "patients\n")
 cat("  Note: Some codes may not have mappings - this is normal for test data\n\n")
 
 # ============================================================================
@@ -46,7 +46,7 @@ cat("=================================================================\n\n")
 tryCatch({
   cat("Step 1: Downloading diagnosis mapping file...\n")
   dx_map <- download_ccsr("diagnosis")
-  cat("✓ download_ccsr('diagnosis') completed\n")
+  cat("download_ccsr('diagnosis') completed\n")
   cat("  Mapping file has", nrow(dx_map), "rows\n\n")
   
   cat("Step 2: Mapping ICD-10 codes with long format...\n")
@@ -56,21 +56,21 @@ tryCatch({
     map_df = dx_map,
     output_format = "long"
   )
-  cat("✓ ccsr_map() with long format completed\n")
+  cat("ccsr_map() with long format completed\n")
   cat("  Result has", nrow(mapped_data), "rows\n")
   cat("  Column names:", paste(names(mapped_data), collapse = ", "), "\n\n")
   
   cat("Step 3: Counting occurrences of each CCSR category...\n")
   ccsr_frequency <- mapped_data |>
     count(default_ccsr_category_ip, sort = TRUE)
-  cat("✓ count() completed\n")
+  cat("count() completed\n")
   cat("  Found", nrow(ccsr_frequency), "unique CCSR categories\n")
   cat("  Top 3 categories:\n")
   print(head(ccsr_frequency, 3))
-  cat("\n✅ Example 1: SUCCESS\n\n")
+  cat("\nExample 1: SUCCESS\n\n")
   
 }, error = function(e) {
-  cat("❌ Example 1: ERROR -", conditionMessage(e), "\n\n")
+  cat("Example 1: ERROR -", conditionMessage(e), "\n\n")
 })
 
 # ============================================================================
@@ -95,7 +95,7 @@ tryCatch({
     map_df = dx_map,
     output_format = "wide"
   )
-  cat("✓ ccsr_map() with wide format completed\n")
+  cat("ccsr_map() with wide format completed\n")
   cat("  Result has", nrow(mapped_wide), "rows\n")
   cat("  Column names:", paste(head(names(mapped_wide), 5), collapse = ", "), "...\n\n")
   
@@ -111,14 +111,14 @@ tryCatch({
       total_categories = sum(total_categories > 0),
       primary_category = first(CCSR_1)
     )
-  cat("✓ Patient-level analysis completed\n")
+  cat("Patient-level analysis completed\n")
   cat("  Result has", nrow(patient_summary), "patients\n")
   cat("  Sample results:\n")
   print(head(patient_summary, 3))
-  cat("\n✅ Example 2: SUCCESS\n\n")
+  cat("\nExample 2: SUCCESS\n\n")
   
 }, error = function(e) {
-  cat("❌ Example 2: ERROR -", conditionMessage(e), "\n\n")
+  cat("Example 2: ERROR -", conditionMessage(e), "\n\n")
 })
 
 # ============================================================================
@@ -143,7 +143,7 @@ tryCatch({
     map_df = dx_map,
     default_only = TRUE
   )
-  cat("✓ ccsr_map() with default_only = TRUE completed\n")
+  cat("ccsr_map() with default_only = TRUE completed\n")
   cat("  Result has", nrow(mapped_default), "rows\n\n")
   
   cat("Step 2: Analyzing principal diagnoses...\n")
@@ -155,7 +155,7 @@ tryCatch({
     cat("  Found", length(unique_ccsr), "unique CCSR categories\n")
     cat("  Getting CCSR descriptions...\n")
     ccsr_descriptions <- get_ccsr_description(unique_ccsr, map_df = dx_map)
-    cat("✓ get_ccsr_description() completed\n")
+    cat("get_ccsr_description() completed\n")
     cat("  Retrieved", nrow(ccsr_descriptions), "descriptions\n\n")
     
     cat("Step 3: Joining with descriptions...\n")
@@ -165,18 +165,18 @@ tryCatch({
         ccsr_descriptions,
         by = c("default_ccsr_category_ip" = "ccsr_code")
       )
-    cat("✓ left_join() completed\n")
+    cat("left_join() completed\n")
     cat("  Result has", nrow(principal_dx_analysis), "rows\n")
     cat("  Sample results:\n")
     print(head(principal_dx_analysis, 3))
   } else {
-    cat("⚠ No CCSR categories found (all NA) - this may occur if codes don't have mappings\n")
+    cat("WARNING: No CCSR categories found (all NA) - this may occur if codes don't have mappings\n")
     cat("  This is expected for some test codes\n")
   }
-  cat("\n✅ Example 3: SUCCESS\n\n")
+  cat("\nExample 3: SUCCESS\n\n")
   
 }, error = function(e) {
-  cat("❌ Example 3: ERROR -", conditionMessage(e), "\n\n")
+  cat("Example 3: ERROR -", conditionMessage(e), "\n\n")
 })
 
 # ============================================================================
@@ -197,19 +197,19 @@ tryCatch({
   cat("Step 1: Downloading trend table 2a...\n")
   cat("  (This may take a moment - downloading from HCUP website)\n")
   trend_table <- download_trend_tables("2a")
-  cat("✓ download_trend_tables('2a') completed\n")
+  cat("download_trend_tables('2a') completed\n")
   cat("  File path:", trend_table, "\n\n")
   
   cat("Step 2: Reading National sheet from trend table...\n")
   cat("  (Using non-interactive mode - selecting tibble format)\n")
   national_data <- read_trend_table(trend_table, sheet = "National", as_data_table = FALSE)
-  cat("✓ read_trend_table() completed\n")
+  cat("read_trend_table() completed\n")
   cat("  Result has", nrow(national_data), "rows\n")
   cat("  Column names (first 10):", paste(head(names(national_data), 10), collapse = ", "), "\n\n")
   
   cat("Step 3: Mapping patient data...\n")
   patient_mapped <- ccsr_map(patient_data, "icd10_code", dx_map, default_only = TRUE)
-  cat("✓ ccsr_map() completed\n\n")
+  cat("ccsr_map() completed\n\n")
   
   cat("Step 4: Comparing with national trends...\n")
   cat("  Note: Trend table column names may differ from CCSR category column\n")
@@ -230,22 +230,22 @@ tryCatch({
     tryCatch({
       comparison <- patient_summary |>
         left_join(national_data, by = setNames(potential_match[1], "default_ccsr_category_ip"))
-      cat("✓ left_join() completed with column:", potential_match[1], "\n")
+      cat("left_join() completed with column:", potential_match[1], "\n")
       cat("  Result has", nrow(comparison), "rows\n")
     }, error = function(e) {
-      cat("  ⚠ Join failed - column names don't match exactly\n")
+      cat("  WARNING: Join failed - column names don't match exactly\n")
       cat("  This is expected - trend tables may use different column naming\n")
       cat("  The workflow is correct; adjust 'by' parameter based on actual column names\n")
     })
   } else {
-    cat("  ⚠ No matching CCSR category column found in trend table\n")
+    cat("  WARNING: No matching CCSR category column found in trend table\n")
     cat("  Trend tables may use different column structures\n")
     cat("  The code syntax is correct; adjust based on actual trend table structure\n")
   }
-  cat("\n✅ Example 4: SUCCESS (workflow demonstrated)\n\n")
+  cat("\nExample 4: SUCCESS (workflow demonstrated)\n\n")
   
 }, error = function(e) {
-  cat("❌ Example 4: ERROR -", conditionMessage(e), "\n")
+  cat("Example 4: ERROR -", conditionMessage(e), "\n")
   cat("  Note: This may fail if network is unavailable or HCUP website is down\n")
   cat("  Error:", conditionMessage(e), "\n\n")
 })
@@ -271,14 +271,14 @@ tryCatch({
     code_col = "icd10_code",
     map_df = dx_map
   )
-  cat("✓ ccsr_map() with default parameters completed\n")
+  cat("ccsr_map() with default parameters completed\n")
   cat("  Result has", nrow(mapped_data), "rows\n")
   cat("  Default output format: 'long'\n")
   cat("  Column names:", paste(names(mapped_data), collapse = ", "), "\n")
-  cat("\n✅ Example 5: SUCCESS\n\n")
+  cat("\nExample 5: SUCCESS\n\n")
   
 }, error = function(e) {
-  cat("❌ Example 5: ERROR -", conditionMessage(e), "\n\n")
+  cat("Example 5: ERROR -", conditionMessage(e), "\n\n")
 })
 
 # ============================================================================
