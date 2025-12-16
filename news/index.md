@@ -2,6 +2,8 @@
 
 ## Version 1.0.0 (2025-11-29)
 
+CRAN release: 2025-12-10
+
 ### Features
 
 #### CCSR Mapping Functions

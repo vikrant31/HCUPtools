@@ -89,7 +89,7 @@ to extract only this default category.
 # Download mapping file
 dx_map <- download_ccsr("diagnosis")
 #> Downloading from: https://hcup-us.ahrq.gov/toolssoftware/ccsr/DXCCSR-v2026-1.zip
-#> Download complete: /tmp/Rtmp6OONtw/HCUPtools_cache/DXCCSR-v2026-1.zip
+#> Download complete: /tmp/Rtmp7JoSdz/HCUPtools_cache/DXCCSR-v2026-1.zip
 #> Reading mapping file: DXCCSR_v2026-1.csv
 
 # Create sample data

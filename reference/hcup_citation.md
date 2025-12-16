@@ -49,20 +49,20 @@ HCUP Summary Trend Tables resource.
 ``` r
 # Text citation for CCSR
 hcup_citation()
-#> [1] "Agency for Healthcare Research and Quality. Clinical Classifications Software Refined (CCSR) for ICD-10-CM Diagnoses, v2026.1. Healthcare Cost and Utilization Project (HCUP). Agency for Healthcare Research and Quality, Rockville, MD. www.hcup-us.ahrq.gov/toolssoftware/ccsr/ccs_refined.jsp. Accessed December 05, 2025. "
+#> [1] "Agency for Healthcare Research and Quality. Clinical Classifications Software Refined (CCSR) for ICD-10-CM Diagnoses, v2026.1. Healthcare Cost and Utilization Project (HCUP). Agency for Healthcare Research and Quality, Rockville, MD. www.hcup-us.ahrq.gov/toolssoftware/ccsr/ccs_refined.jsp. Accessed December 16, 2025. "
 
 # BibTeX format for CCSR
 hcup_citation(format = "bibtex")
-#> [1] "@misc{hcup_ccsr_20261,\n  title = {Clinical Classifications Software Refined (CCSR) for ICD-10-CM Diagnoses, v2026.1},\n  author = {{Agency for Healthcare Research and Quality}},\n  organization = {Healthcare Cost and Utilization Project (HCUP)},\n  publisher = {Agency for Healthcare Research and Quality},\n  address = {Rockville, MD},\n  year = {2026},\n  url = {https://www.hcup-us.ahrq.gov/toolssoftware/ccsr/ccs_refined.jsp},\n  note = {Accessed December 05, 2025}\n}"
+#> [1] "@misc{hcup_ccsr_20261,\n  title = {Clinical Classifications Software Refined (CCSR) for ICD-10-CM Diagnoses, v2026.1},\n  author = {{Agency for Healthcare Research and Quality}},\n  organization = {Healthcare Cost and Utilization Project (HCUP)},\n  publisher = {Agency for Healthcare Research and Quality},\n  address = {Rockville, MD},\n  year = {2026},\n  url = {https://www.hcup-us.ahrq.gov/toolssoftware/ccsr/ccs_refined.jsp},\n  note = {Accessed December 16, 2025}\n}"
 
 # Citation for Summary Trend Tables
 hcup_citation(resource = "trend_tables")
-#> [1] "Agency for Healthcare Research and Quality. HCUP Summary Trend Tables. Healthcare Cost and Utilization Project (HCUP). Agency for Healthcare Research and Quality, Rockville, MD. www.hcup-us.ahrq.gov/reports/trendtables/summarytrendtables.jsp. Accessed December 05, 2025. "
+#> [1] "Agency for Healthcare Research and Quality. HCUP Summary Trend Tables. Healthcare Cost and Utilization Project (HCUP). Agency for Healthcare Research and Quality, Rockville, MD. www.hcup-us.ahrq.gov/reports/trendtables/summarytrendtables.jsp. Accessed December 16, 2025. "
 
 # R citation object
 hcup_citation(format = "r")
 #> Agency for Healthcare Research and Quality (2026). “Clinical
 #> Classifications Software Refined (CCSR) for ICD-10-CM Diagnoses,
-#> v2026.1.” Accessed December 05, 2025,
+#> v2026.1.” Accessed December 16, 2025,
 #> <https://www.hcup-us.ahrq.gov/toolssoftware/ccsr/ccs_refined.jsp>.
 ```
