@@ -93,16 +93,16 @@ changelog_info <- ccsr_changelog(version = "v2026.1", format = "text")
 
 # Download change log file
 changelog_file <- ccsr_changelog(version = "v2025.1", format = "download")
-#> Change log downloaded to: /tmp/Rtmp7JoSdz/HCUPtools_cache/DXCCSR-ChangeLog-v20241-v20251.xlsx
+#> Change log downloaded to: /tmp/RtmpcIBM7b/HCUPtools_cache/DXCCSR-ChangeLog-v20241-v20251.xlsx
 
 # View change log in default PDF viewer
 ccsr_changelog(version = "v2026.1", format = "view")
-#> Change log downloaded to: /tmp/Rtmp7JoSdz/HCUPtools_cache/DXCCSR-ChangeLog-v20251-v20261.xlsx
+#> Change log downloaded to: /tmp/RtmpcIBM7b/HCUPtools_cache/DXCCSR-ChangeLog-v20251-v20261.xlsx
 #> Change log Excel file opened in default application
 
 # Extract text from change log PDF (requires pdftools package)
 changelog_text <- ccsr_changelog(version = "v2026.1", format = "extract")
-#> Using cached change log: /tmp/Rtmp7JoSdz/HCUPtools_cache/DXCCSR-ChangeLog-v20251-v20261.xlsx
+#> Using cached change log: /tmp/RtmpcIBM7b/HCUPtools_cache/DXCCSR-ChangeLog-v20251-v20261.xlsx
 #> Content extracted from change log Excel file (8 sheet(s))
 cat(changelog_text)
 #> 

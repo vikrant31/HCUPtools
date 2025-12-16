@@ -94,7 +94,7 @@ print(available_tables)
 table_path <- download_trend_tables("2a")
 #> Downloading: All Inpatient Encounter Types: Trends in the Number of Discharges
 #> URL: https://hcup-us.ahrq.gov/reports/trendtables/HCUP_SummaryTrendTables_T2a.xlsx
-#> Download complete: /tmp/Rtmp7JoSdz/HCUP_SummaryTrendTables_T2a.xlsx
+#> Download complete: /tmp/RtmpcIBM7b/HCUP_SummaryTrendTables_T2a.xlsx
 
 # Download all tables
 all_tables <- download_trend_tables("all")

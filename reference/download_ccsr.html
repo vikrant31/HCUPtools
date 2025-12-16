@@ -101,19 +101,19 @@ official AHRQ data sources.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co"># Download latest diagnosis CCSR mapping</span></span></span>
 <span class="r-in"><span><span class="va">dx_map</span> <span class="op">&lt;-</span> <span class="fu">download_ccsr</span><span class="op">(</span><span class="st">"diagnosis"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Using cached file: /tmp/Rtmp7JoSdz/HCUPtools_cache/DXCCSR-v2026-1.zip</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Using cached file: /tmp/RtmpcIBM7b/HCUPtools_cache/DXCCSR-v2026-1.zip</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Reading mapping file: DXCCSR_v2026-1.csv</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Download specific version of procedure CCSR mapping</span></span></span>
 <span class="r-in"><span><span class="va">pr_map</span> <span class="op">&lt;-</span> <span class="fu">download_ccsr</span><span class="op">(</span><span class="st">"procedure"</span>, version <span class="op">=</span> <span class="st">"v2025.1"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading from: https://hcup-us.ahrq.gov/toolssoftware/ccsr/PRCCSR_v2025-1.zip</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Download complete: /tmp/Rtmp7JoSdz/HCUPtools_cache/PRCCSR_v2025-1.zip</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Download complete: /tmp/RtmpcIBM7b/HCUPtools_cache/PRCCSR_v2025-1.zip</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Reading mapping file: PRCCSR_v2025-1.csv</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Download without caching</span></span></span>
 <span class="r-in"><span><span class="va">dx_map</span> <span class="op">&lt;-</span> <span class="fu">download_ccsr</span><span class="op">(</span><span class="st">"diagnosis"</span>, cache <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading from: https://hcup-us.ahrq.gov/toolssoftware/ccsr/DXCCSR-v2026-1.zip</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Download complete: /tmp/Rtmp7JoSdz/file18787d8c5526.zip</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Download complete: /tmp/RtmpcIBM7b/file18615cf88265.zip</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Reading mapping file: DXCCSR_v2026-1.csv</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
