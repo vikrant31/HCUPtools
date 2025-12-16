@@ -51,7 +51,7 @@
 #' To see available sheets, use `list_trend_table_sheets()`.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Automatically read from cache (shows menu if multiple files)
 #' # Assign to a variable to use the data
 #' national_data <- read_trend_table()
@@ -325,7 +325,7 @@ show_trend_table_assignment_message <- function(suggested_name, data) {
 #' @return A character vector of sheet names.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' sheets <- list_trend_table_sheets("path/to/HCUP_SummaryTrendTables_T2a.xlsx")
 #' print(sheets)
 #' }

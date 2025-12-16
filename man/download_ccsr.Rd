@@ -54,7 +54,7 @@ The function handles:
 }
 }
 \examples{
-\dontrun{
+\donttest{
 # Download latest diagnosis CCSR mapping
 dx_map <- download_ccsr("diagnosis")
 

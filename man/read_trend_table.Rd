@@ -73,7 +73,7 @@ To use the data, assign it to a variable:
 purposes and does not automatically assign the data.
 }
 \examples{
-\dontrun{
+\donttest{
 # Automatically read from cache (shows menu if multiple files)
 # Assign to a variable to use the data
 national_data <- read_trend_table()

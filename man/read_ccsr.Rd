@@ -83,7 +83,7 @@ To use the data, assign it to a variable:
 purposes and does not automatically assign the data.
 }
 \examples{
-\dontrun{
+\donttest{
 # Automatically read latest cached diagnosis file
 # Assign to a variable to use the data
 dx_map <- read_ccsr()

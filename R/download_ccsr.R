@@ -33,7 +33,7 @@
 #' - Conversion to tidy tibble format
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Download latest diagnosis CCSR mapping
 #' dx_map <- download_ccsr("diagnosis")
 #'
@@ -338,6 +338,7 @@ clean_column_names <- function(names) {
 #' @noRd
 find_icd_column <- function(df, type) {
   col_names <- tolower(names(df))
+  original_names <- names(df)
   
   if (type == "diagnosis") {
     patterns <- c("icd.*10.*cm", "icd.*10", "diagnosis.*code", "^code$", "^dx$")
@@ -346,13 +347,13 @@ find_icd_column <- function(df, type) {
   }
   
   for (pattern in patterns) {
-    match <- grep(pattern, col_names, value = TRUE)
-    if (length(match) > 0) {
-      return(match[1])
+    match_idx <- grep(pattern, col_names)
+    if (length(match_idx) > 0) {
+      return(original_names[match_idx[1]])
     }
   }
   
-  return(names(df)[1])
+  return(original_names[1])
 }
 
 #' Get latest available CCSR version from HCUP website
