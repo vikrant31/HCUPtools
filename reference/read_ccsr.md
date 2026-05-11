@@ -113,7 +113,7 @@ assign the data.
 # \donttest{
 # Populate cache, then read (requires network)
 invisible(download_ccsr("diagnosis"))
-#> Using cached file: /tmp/RtmpS6A1fQ/HCUPtools_cache/DXCCSR-v2026-1.zip
+#> Using cached file: /tmp/RtmpUogbmT/HCUPtools_cache/DXCCSR-v2026-1.zip
 #> Reading mapping file: DXCCSR_v2026-1.csv
 dx_map <- read_ccsr(as_data_table = FALSE)
 #> 
@@ -125,7 +125,7 @@ dx_map <- read_ccsr(as_data_table = FALSE)
 invisible(download_ccsr("procedure"))
 #> Cached files found (v2025.1) but latest is v2026.1. Downloading latest version...
 #> Downloading from: https://hcup-us.ahrq.gov/toolssoftware/ccsr/PRCCSR_v2026-1.zip
-#> Download complete: /tmp/RtmpS6A1fQ/HCUPtools_cache/PRCCSR_v2026-1.zip
+#> Download complete: /tmp/RtmpUogbmT/HCUPtools_cache/PRCCSR_v2026-1.zip
 #> Reading mapping file: PRCCSR_v2026-1.csv
 pr_map <- read_ccsr(type = "procedure", as_data_table = FALSE)
 #> 
