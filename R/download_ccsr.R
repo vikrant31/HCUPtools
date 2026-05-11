@@ -313,6 +313,9 @@ extract_and_read_ccsr <- function(zip_path, type, version, clean_names) {
     names(mapping_data) <- clean_column_names(names(mapping_data))
   }
 
+  # Normalize quoted values found in HCUP files (e.g., 'DIG001')
+  mapping_data <- normalize_ccsr_character_columns(mapping_data)
+
   icd_col <- find_icd_column(mapping_data, type)
   if (!is.null(icd_col)) {
     mapping_data[[icd_col]] <- format_icd_codes(mapping_data[[icd_col]])
@@ -681,8 +684,30 @@ try_fetch_versions_direct <- function(file_prefix) {
 #'
 #' @noRd
 format_icd_codes <- function(codes) {
-  # Remove quotes and whitespace, preserve leading zeros
-  codes <- gsub("^['\"]|['\"]$", "", codes)
-  codes <- trimws(codes)
+  # Remove surrounding quotes and whitespace, preserve leading zeros
+  codes <- strip_surrounding_quotes(codes)
+  codes <- trimws(as.character(codes))
   return(codes)
+}
+
+#' Strip surrounding quotes from character values
+#'
+#' @noRd
+strip_surrounding_quotes <- function(x) {
+  x <- as.character(x)
+  x <- trimws(x)
+  x <- gsub("^[\"'`]+|[\"'`]+$", "", x)
+  x <- gsub("^[\u2018\u2019\u201C\u201D]+|[\u2018\u2019\u201C\u201D]+$", "", x)
+  x
+}
+
+#' Normalize character columns in CCSR mapping data
+#'
+#' @noRd
+normalize_ccsr_character_columns <- function(df) {
+  chr_cols <- vapply(df, is.character, logical(1))
+  if (any(chr_cols)) {
+    df[chr_cols] <- lapply(df[chr_cols], strip_surrounding_quotes)
+  }
+  df
 }

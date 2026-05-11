@@ -84,26 +84,17 @@ purposes and does not automatically assign the data.
 }
 \examples{
 \donttest{
-# Automatically read latest cached diagnosis file
-# Assign to a variable to use the data
-dx_map <- read_ccsr()
+# Populate cache, then read (requires network)
+invisible(download_ccsr("diagnosis"))
+dx_map <- read_ccsr(as_data_table = FALSE)
+invisible(download_ccsr("procedure"))
+pr_map <- read_ccsr(type = "procedure", as_data_table = FALSE)
 
-# Read specific version from cache with suggested name
-dx_map_v2025 <- read_ccsr(type = "diagnosis", version = "v2025.1", name = "dx_map_v2025")
+# From a local file on your machine (uncomment and set the path):
+# dx_map <- read_ccsr("/path/to/DXCCSR-v2026-1.zip", as_data_table = FALSE)
+# dx_map <- read_ccsr("/path/to/DXCCSR_v2026_1.csv", as_data_table = FALSE)
+# dx_map <- read_ccsr("/path/to/extracted_ccsr_files/", as_data_table = FALSE)
 
-# Read procedure file from cache
-pr_map <- read_ccsr(type = "procedure")
-
-# Read from a specific file path (manual)
-dx_map <- read_ccsr("path/to/DXCCSR-v2026-1.zip")
-
-# Read from a CSV file
-dx_map <- read_ccsr("path/to/DXCCSR_v2026_1.csv")
-
-# Read from a directory
-dx_map <- read_ccsr("path/to/extracted_ccsr_files/")
-
-# Use the data after assignment
 head(dx_map)
 nrow(dx_map)
 }

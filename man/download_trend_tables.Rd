@@ -59,8 +59,8 @@ print(available_tables)
 # Download a specific table
 table_path <- download_trend_tables("2a")
 
-# Download all tables
-all_tables <- download_trend_tables("all")
+# Bulk ZIP (\code{table_id = "all"}) is only available when HCUP publishes a
+# combined file; otherwise use individual IDs from the listing above.
 }
 
 }

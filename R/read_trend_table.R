@@ -52,30 +52,17 @@
 #'
 #' @examples
 #' \donttest{
-#' # Automatically read from cache (shows menu if multiple files)
-#' # Assign to a variable to use the data
-#' national_data <- read_trend_table()
-#'
-#' # Read specific table from cache with suggested name
-#' table_2a <- read_trend_table(table_id = "2a", name = "table_2a")
-#'
-#' # Read from a specific file path (manual)
-#' national_data <- read_trend_table("path/to/HCUP_SummaryTrendTables_T2a.xlsx")
-#'
-#' # Read a specific sheet with custom name
-#' state_data <- read_trend_table(
-#'   "path/to/HCUP_SummaryTrendTables_T2a.xlsx",
-#'   sheet = "State",
-#'   name = "state_data"
-#' )
-#'
-#' # List available sheets first
-#' sheets <- list_trend_table_sheets("path/to/HCUP_SummaryTrendTables_T2a.xlsx")
-#' print(sheets)
-#'
-#' # Use the data after assignment
+#' # Requires network: download a table, list sheets, read data (same file path)
+#' path_xlsx <- download_trend_tables("2a")
+#' list_trend_table_sheets(path_xlsx)
+#' national_data <- read_trend_table(file_path = path_xlsx, as_data_table = FALSE)
 #' head(national_data)
-#' nrow(national_data)
+#'
+#' # After a download, you can also read from cache by table ID
+#' table_2a <- read_trend_table(table_id = "2a", as_data_table = FALSE)
+#' head(table_2a)
+#'
+#' # With a file already on disk, pass its path to `read_trend_table(file_path = ...)`.
 #' }
 #'
 #' @importFrom readxl read_excel excel_sheets
@@ -326,8 +313,9 @@ show_trend_table_assignment_message <- function(suggested_name, data) {
 #'
 #' @examples
 #' \donttest{
-#' sheets <- list_trend_table_sheets("path/to/HCUP_SummaryTrendTables_T2a.xlsx")
-#' print(sheets)
+#' # Requires network: download first, then list sheets from that file path
+#' path_xlsx <- download_trend_tables("2a")
+#' list_trend_table_sheets(path_xlsx)
 #' }
 #'
 #' @importFrom readxl excel_sheets

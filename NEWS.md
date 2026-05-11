@@ -1,3 +1,16 @@
+## Version 1.0.1 (2026-04-26)
+
+### Bug fixes
+
+- **`download_ccsr()` / `read_ccsr()`**: Strip surrounding quotes from character columns in HCUP CSVs so ICD and CCSR values join reliably.
+- **`ccsr_map()`**: Diagnosis mapping now expands **CCSR Category 1–6** so cross-classifications appear in long and wide outputs; wide uses slot-aligned `CCSR_1`…`CCSR_6`; long diagnosis output includes **`is_default`**; fixed spurious wide column from unmatched rows.
+- **`get_ccsr_description()`**: Normalize quoted CCSR codes when matching.
+- **`list_ccsr_versions()`**: Merge scraped versions with direct file checks so current releases (e.g. v2026.1) appear.
+- **`ccsr_changelog()`**: When `version` is explicit, skip interactive prompts for import format and sheet selection by default.
+- **CRAN / `R CMD check`**: `inst/CITATION` now uses `bibentry()`; examples that require network, local files, or optional PDF tooling use `\donttest{}`; unused `pkgdown` removed from `Suggests`; non-package paths added to `.Rbuildignore`.
+
+---
+
 ## Version 1.0.0 (2025-11-29)
 
 ### Features

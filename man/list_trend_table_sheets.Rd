@@ -17,8 +17,9 @@ Lists all available sheets in a HCUP Summary Trend Table Excel file.
 }
 \examples{
 \donttest{
-sheets <- list_trend_table_sheets("path/to/HCUP_SummaryTrendTables_T2a.xlsx")
-print(sheets)
+# Requires network: download first, then list sheets from that file path
+path_xlsx <- download_trend_tables("2a")
+list_trend_table_sheets(path_xlsx)
 }
 
 }

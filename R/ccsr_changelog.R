@@ -68,6 +68,7 @@ ccsr_changelog <- function(version = "latest",
                           type = "diagnosis",
                           format = "read",
                           as_data_table = NULL) {
+  requested_version <- version
   
   # Validate inputs
   type <- tolower(type)
@@ -507,7 +508,7 @@ ccsr_changelog <- function(version = "latest",
       # Check if data.table is available
       has_data_table <- requireNamespace("data.table", quietly = TRUE)
       
-      if (interactive() && has_data_table) {
+      if (interactive() && has_data_table && requested_version == "latest") {
         cat("\nWould you like to import as a data.table? (faster for large datasets)\n")
         cat("  [1] Yes (data.table)\n")
         cat("  [2] No (tibble/data.frame) - default\n")
@@ -533,7 +534,7 @@ ccsr_changelog <- function(version = "latest",
       # Read the first sheet (or let user choose if multiple)
       if (length(sheet_names) == 1) {
         data <- readxl::read_excel(changelog_file, sheet = 1, .name_repair = "minimal")
-      } else if (interactive()) {
+      } else if (interactive() && requested_version == "latest") {
         # Multiple sheets - let user choose
         cat("\n=== Available Sheets ===\n")
         for (i in seq_along(sheet_names)) {

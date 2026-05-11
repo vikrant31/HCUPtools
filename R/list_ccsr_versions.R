@@ -69,8 +69,14 @@ list_ccsr_versions <- function(type = "all") {
   
   # If not cached, fetch from HCUP website
   if (is.null(all_versions)) {
-    dx_versions <- try_fetch_all_versions_from_url("DXCCSR")
-    pr_versions <- try_fetch_all_versions_from_url("PRCCSR")
+    dx_versions <- unique(c(
+      try_fetch_all_versions_from_url("DXCCSR"),
+      try_fetch_versions_direct("DXCCSR")
+    ))
+    pr_versions <- unique(c(
+      try_fetch_all_versions_from_url("PRCCSR"),
+      try_fetch_versions_direct("PRCCSR")
+    ))
     
     # Combine results
     result_list <- list()

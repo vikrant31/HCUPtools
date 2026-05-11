@@ -51,3 +51,6 @@ README_TESTING.md
 
 # Logo generation (keep script, ignore output if regenerated)
 # man/figures/logo.png is tracked, but we keep it
+
+# Manuscript files
+manuscript/

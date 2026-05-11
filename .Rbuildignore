@@ -24,3 +24,7 @@
 ^\.RData$
 ^Rplots\.pdf$
 ^pkgdown$
+^manuscript$
+^cran-comments\.md$
+^examples$
+^figures$

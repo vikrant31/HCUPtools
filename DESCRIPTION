@@ -1,7 +1,7 @@
 Package: HCUPtools
 Type: Package
 Title: Access and Work with HCUP Resources and Datasets
-Version: 1.0.0
+Version: 1.0.1
 Depends: R (>= 4.1.0)
 Authors@R: person("Vikrant Dev Rathore", email = "rathore.vikrant@gmail.com", role = c("aut", "cre"))
 Description: A comprehensive R package for accessing and working with publicly 
@@ -42,7 +42,6 @@ Suggests:
     testthat (>= 3.0.0),
     knitr,
     rmarkdown,
-    pkgdown,
     data.table,
     pdftools
 VignetteBuilder: knitr

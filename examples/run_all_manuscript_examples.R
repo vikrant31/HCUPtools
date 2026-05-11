@@ -24,15 +24,14 @@ if (!require("dplyr", quietly = TRUE)) {
 
 cat("Packages loaded successfully\n\n")
 
-# Create sample patient data for all examples
-# Using codes that are more likely to have mappings in CCSR
-cat("Creating sample patient data...\n")
+# Sample diagnosis-level rows (one ICD-10 code per row; not one row per patient)
+cat("Creating sample diagnosis-level data...\n")
 patient_data <- tibble::tibble(
   patient_id = 1:10,
   icd10_code = c("E11.9", "I10", "M79.3", "E78.5", "K21.9", 
                  "I50.9", "N18.6", "E78.5", "I25.10", "J44.1")
 )
-cat("Sample data created with", nrow(patient_data), "patients\n")
+cat("Sample data created with", nrow(patient_data), "diagnosis rows\n")
 cat("  Note: Some codes may not have mappings - this is normal for test data\n\n")
 
 # ============================================================================
@@ -54,7 +53,8 @@ tryCatch({
     data = patient_data,
     code_col = "icd10_code",
     map_df = dx_map,
-    output_format = "long"
+    output_format = "long",
+    default_only = FALSE
   )
   cat("ccsr_map() with long format completed\n")
   cat("  Result has", nrow(mapped_data), "rows\n")
@@ -62,7 +62,7 @@ tryCatch({
   
   cat("Step 3: Counting occurrences of each CCSR category...\n")
   ccsr_frequency <- mapped_data |>
-    count(default_ccsr_category_ip, sort = TRUE)
+    count(ccsr_category, sort = TRUE)
   cat("count() completed\n")
   cat("  Found", nrow(ccsr_frequency), "unique CCSR categories\n")
   cat("  Top 3 categories:\n")
@@ -78,7 +78,7 @@ tryCatch({
 # ============================================================================
 
 cat("=================================================================\n")
-cat("Example 2: Patient-Level Analysis (Section 3.2)\n")
+cat("Example 2: Code-Level Wide Format (Section 3.2)\n")
 cat("=================================================================\n\n")
 
 tryCatch({
@@ -99,19 +99,20 @@ tryCatch({
   cat("  Result has", nrow(mapped_wide), "rows\n")
   cat("  Column names:", paste(head(names(mapped_wide), 5), collapse = ", "), "...\n\n")
   
-  cat("Step 2: Performing patient-level analysis...\n")
-  patient_summary <- mapped_wide |>
+  cat("Step 2: Summarizing filled CCSR slots per diagnosis row (optional patient roll-up)...\n")
+  per_row <- mapped_wide |>
     rowwise() |>
     mutate(
-      total_categories = sum(!is.na(c_across(starts_with("CCSR"))))
+      n_ccsr_slots = sum(!is.na(c_across(starts_with("CCSR_"))))
     ) |>
-    ungroup() |>
+    ungroup()
+  patient_summary <- per_row |>
     group_by(patient_id) |>
     summarize(
-      total_categories = sum(total_categories > 0),
-      primary_category = first(CCSR_1)
+      n_dx_rows = n(),
+      n_slots_nonzero = sum(n_ccsr_slots > 0)
     )
-  cat("Patient-level analysis completed\n")
+  cat("Wide-format summaries completed\n")
   cat("  Result has", nrow(patient_summary), "patients\n")
   cat("  Sample results:\n")
   print(head(patient_summary, 3))
@@ -148,7 +149,7 @@ tryCatch({
   
   cat("Step 2: Analyzing principal diagnoses...\n")
   # Get unique CCSR categories (non-NA)
-  unique_ccsr <- unique(mapped_default$default_ccsr_category_ip)
+  unique_ccsr <- unique(mapped_default$ccsr_category)
   unique_ccsr <- unique_ccsr[!is.na(unique_ccsr)]
   
   if (length(unique_ccsr) > 0) {
@@ -160,10 +161,10 @@ tryCatch({
     
     cat("Step 3: Joining with descriptions...\n")
     principal_dx_analysis <- mapped_default |>
-      count(default_ccsr_category_ip, sort = TRUE) |>
+      count(ccsr_category, sort = TRUE) |>
       left_join(
         ccsr_descriptions,
-        by = c("default_ccsr_category_ip" = "ccsr_code")
+        by = c("ccsr_category" = "ccsr_code")
       )
     cat("left_join() completed\n")
     cat("  Result has", nrow(principal_dx_analysis), "rows\n")
@@ -202,7 +203,11 @@ tryCatch({
   
   cat("Step 2: Reading National sheet from trend table...\n")
   cat("  (Using non-interactive mode - selecting tibble format)\n")
-  national_data <- read_trend_table(trend_table, sheet = "National", as_data_table = FALSE)
+  national_data <- read_trend_table(
+    file_path = trend_table,
+    sheet = "National",
+    as_data_table = FALSE
+  )
   cat("read_trend_table() completed\n")
   cat("  Result has", nrow(national_data), "rows\n")
   cat("  Column names (first 10):", paste(head(names(national_data), 10), collapse = ", "), "\n\n")
@@ -217,7 +222,7 @@ tryCatch({
   
   # Create patient summary
   patient_summary <- patient_mapped |>
-    count(default_ccsr_category_ip)
+    count(ccsr_category)
   cat("  Patient data summary created with", nrow(patient_summary), "categories\n")
   
   # Try to find matching column in trend table
@@ -229,7 +234,7 @@ tryCatch({
     # Try the join with the found column
     tryCatch({
       comparison <- patient_summary |>
-        left_join(national_data, by = setNames(potential_match[1], "default_ccsr_category_ip"))
+        left_join(national_data, by = setNames(potential_match[1], "ccsr_category"))
       cat("left_join() completed with column:", potential_match[1], "\n")
       cat("  Result has", nrow(comparison), "rows\n")
     }, error = function(e) {

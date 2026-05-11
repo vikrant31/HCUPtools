@@ -23,8 +23,8 @@ knitr::opts_chunk$set(
 
 ## Installation and Setup
 
-```{r}
-# Install from CRAN
+```{r, eval = FALSE}
+# Install from CRAN (evaluated only when you knit locally; skipped during R CMD check)
 install.packages("HCUPtools")
 
 # Load the package
@@ -38,7 +38,7 @@ The Clinical Classifications Software Refined (CCSR) is a tool developed by AHRQ
 
 ### Download Latest Version
 
-```{r}
+```{r, eval=FALSE}
 # Download the latest diagnosis CCSR mapping file
 dx_map <- download_ccsr("diagnosis")
 
@@ -48,7 +48,7 @@ pr_map <- download_ccsr("procedure")
 
 ### Download Specific Version
 
-```{r}
+```{r, eval=FALSE}
 # Download a specific version (useful for reproducibility)
 dx_map_v2025 <- download_ccsr("diagnosis", version = "v2025.1")
 pr_map_v2025 <- download_ccsr("procedure", version = "v2025.1")
@@ -56,7 +56,7 @@ pr_map_v2025 <- download_ccsr("procedure", version = "v2025.1")
 
 ### List Available Versions
 
-```{r}
+```{r, eval=FALSE}
 # List all available versions
 all_versions <- list_ccsr_versions()
 print(all_versions)
@@ -74,7 +74,7 @@ Once you have downloaded a mapping file, you can use `ccsr_map()` to map ICD-10 
 
 ### Prepare Sample Data
 
-```{r}
+```{r, eval=FALSE}
 # Create sample patient data with ICD-10 diagnosis codes
 patient_data <- tibble::tibble(
   patient_id = 1:10,
@@ -91,7 +91,7 @@ patient_data <- tibble::tibble(
 
 The long format duplicates records for each assigned CCSR category. This is essential for cross-classification analysis where you need to count all assigned categories.
 
-```{r}
+```{r, eval=FALSE}
 # Map codes using long format (default)
 mapped_long <- ccsr_map(
   data = patient_data,
@@ -118,7 +118,7 @@ print(ccsr_counts)
 
 The wide format creates multiple columns (CCSR_1, CCSR_2, etc.) for multiple categories, keeping one row per ICD-10 code.
 
-```{r}
+```{r, eval=FALSE}
 # Map codes using wide format
 mapped_wide <- ccsr_map(
   data = patient_data,
@@ -132,15 +132,15 @@ head(mapped_wide)
 ```
 
 **Use Case**: Wide format is ideal when you want to:
-- Keep all CCSR categories for each patient in a single row
-- Perform patient-level analysis
+- Keep all CCSR category slots on one row per **input diagnosis code row**
+- Then aggregate to patient or encounter level with your own rules (e.g., principal diagnosis)
 - Maintain the original data structure with additional CCSR columns
 
 ### Default Category Only
 
 For diagnosis codes, CCSR assigns a "default" category that is recommended for principal diagnosis analysis. Use `default_only = TRUE` to extract only this default category.
 
-```{r}
+```{r, eval=FALSE}
 # Map codes using default category only
 mapped_default <- ccsr_map(
   data = patient_data,
@@ -162,7 +162,7 @@ head(mapped_default)
 
 To understand what CCSR categories mean, use `get_ccsr_description()`:
 
-```{r}
+```{r, eval=FALSE}
 # Get descriptions for specific CCSR codes
 ccsr_codes <- c("ADM010", "NEP003", "CIR019", "END001", "MBD001")
 descriptions <- get_ccsr_description(ccsr_codes, map_df = dx_map)
@@ -179,7 +179,7 @@ descriptions_auto <- get_ccsr_description(
 
 The package also supports ICD-10-PCS procedure codes:
 
-```{r}
+```{r, eval=FALSE}
 # Download procedure mapping
 pr_map <- download_ccsr("procedure")
 
@@ -206,7 +206,7 @@ head(mapped_procedures)
 
 Here's a complete workflow for analyzing CCSR categories in a dataset:
 
-```{r}
+```{r, eval=FALSE}
 # Step 1: Download mapping file
 dx_map <- download_ccsr("diagnosis")
 
@@ -240,7 +240,7 @@ print(ccsr_counts_with_desc)
 
 The package also provides access to HCUP Summary Trend Tables, which contain aggregated information on hospital utilization trends:
 
-```{r}
+```{r, eval=FALSE}
 # List available tables (interactive menu)
 available_tables <- download_trend_tables()
 print(available_tables)
@@ -264,7 +264,7 @@ For more information, see: [HCUP Summary Trend Tables](https://hcup-us.ahrq.gov/
 
 ### Reading Trend Tables
 
-```{r}
+```{r, eval=FALSE}
 # Read the trend table data
 trend_data <- read_trend_table(table_path, sheet = "National")
 head(trend_data)
@@ -281,7 +281,7 @@ california_data <- read_trend_table(table_path, sheet = "California")
 
 View changes between CCSR versions:
 
-```{r}
+```{r, eval=FALSE}
 # Get change log as data table (default)
 changelog <- ccsr_changelog(version = "v2026.1")
 print(changelog)
@@ -300,7 +300,7 @@ changelog_file <- ccsr_changelog(version = "v2026.1", format = "download")
 
 When using HCUP data in publications, always cite the source properly:
 
-```{r}
+```{r, eval=FALSE}
 # Generate text citation for CCSR
 cat(hcup_citation())
 
@@ -319,7 +319,7 @@ print(citation_obj)
 
 If you've already downloaded files, you can read them directly:
 
-```{r}
+```{r, eval=FALSE}
 # Read CCSR file from various formats
 dx_map <- read_ccsr("path/to/DXCCSR-v2026-1.zip")
 dx_map <- read_ccsr("path/to/DXCCSR_v2026-1.csv")

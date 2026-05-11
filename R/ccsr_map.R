@@ -77,7 +77,7 @@
 #' }
 #'
 #' @importFrom dplyr left_join mutate group_by ungroup across all_of row_number desc
-#' @importFrom tidyr pivot_wider
+#' @importFrom tidyr pivot_wider pivot_longer
 #' @importFrom tibble as_tibble
 #' @importFrom stats setNames
 #' @importFrom rlang .data
@@ -128,52 +128,65 @@ ccsr_map <- function(data,
     stop("Could not identify ICD-10 code column in mapping data")
   }
   
-  if (is.null(map_cols$ccsr_col)) {
+  if (type == "diagnosis" && length(map_cols$ccsr_cols) == 0 && !default_only) {
+    stop("Could not identify CCSR category columns in mapping data")
+  }
+
+  if (type == "procedure" && is.null(map_cols$ccsr_col)) {
     stop("Could not identify CCSR category column in mapping data")
   }
   
   # Prepare data for joining
   data_prep <- tibble::as_tibble(data)
   data_prep[[code_col]] <- format_icd_codes(data_prep[[code_col]])
+  data_prep$.hcuptools_row_id <- seq_len(nrow(data_prep))
   
   mapping <- tibble::as_tibble(map_df)
+  mapping <- normalize_ccsr_character_columns(mapping)
   mapping[[map_cols$icd_col]] <- format_icd_codes(mapping[[map_cols$icd_col]])
   
-  # Filter mapping data if default_only is TRUE (diagnosis only)
-  if (default_only && type == "diagnosis" && !is.null(map_cols$default_col)) {
-    mapping <- mapping[!is.na(mapping[[map_cols$default_col]]), ]
-    # Use default column as the CCSR column
-    map_cols$ccsr_col <- map_cols$default_col
-  }
-  
-  # Prepare join columns
-  join_cols <- c(map_cols$icd_col, map_cols$ccsr_col)
-  if (!is.null(map_cols$desc_col)) {
-    join_cols <- c(join_cols, map_cols$desc_col)
+  if (type == "diagnosis") {
+    mapping <- prepare_diagnosis_mapping(mapping, map_cols, default_only)
+    join_cols <- c("icd_code", "ccsr_category", "ccsr_num", "is_default")
+    join_by <- stats::setNames("icd_code", code_col)
+  } else {
+    join_cols <- c(map_cols$icd_col, map_cols$ccsr_col)
+    if (!is.null(map_cols$desc_col)) {
+      join_cols <- c(join_cols, map_cols$desc_col)
+    }
+    join_by <- stats::setNames(map_cols$icd_col, code_col)
+    mapping <- mapping[, join_cols, drop = FALSE]
   }
   
   # Perform the join
-  join_by <- stats::setNames(map_cols$icd_col, code_col)
   result <- dplyr::left_join(
     data_prep,
-    mapping[, join_cols],
+    mapping,
     by = join_by
   )
   
   # Handle output format
-  if (output_format == "wide" && type == "diagnosis" && !default_only) {
-    # For wide format with multiple categories, we need to reshape
-    result <- reshape_to_wide(result, code_col, map_cols$ccsr_col)
+  if (output_format == "wide" && type == "diagnosis") {
+    result <- reshape_to_wide(result, code_col)
+  } else if (type == "diagnosis") {
+    result$ccsr_num <- NULL
   }
   
   # Select columns if keep_all is FALSE
   if (!keep_all) {
-    keep_cols <- c(code_col, map_cols$ccsr_col)
-    if (!is.null(map_cols$desc_col)) {
-      keep_cols <- c(keep_cols, map_cols$desc_col)
+    if (type == "diagnosis") {
+      ccsr_keep_cols <- grep("^CCSR_\\d+$|^ccsr_category$|^is_default$", names(result), value = TRUE)
+      keep_cols <- c(code_col, ccsr_keep_cols)
+    } else {
+      keep_cols <- c(code_col, map_cols$ccsr_col)
+      if (!is.null(map_cols$desc_col)) {
+        keep_cols <- c(keep_cols, map_cols$desc_col)
+      }
     }
-    result <- result[, names(result) %in% c(keep_cols, names(data)), ]
+    result <- result[, names(result) %in% keep_cols, drop = FALSE]
   }
+
+  result$.hcuptools_row_id <- NULL
   
   return(result)
 }
@@ -227,7 +240,7 @@ infer_ccsr_type <- function(map_df) {
 identify_mapping_columns <- function(map_df, type, default_only) {
   col_names <- tolower(names(map_df))
   
-  result <- list(icd_col = NULL, ccsr_col = NULL, default_col = NULL, desc_col = NULL)
+  result <- list(icd_col = NULL, ccsr_col = NULL, ccsr_cols = character(0), default_col = NULL, desc_col = NULL)
   
   # Find ICD code column
   if (type == "diagnosis") {
@@ -244,18 +257,23 @@ identify_mapping_columns <- function(map_df, type, default_only) {
     }
   }
   
-  # Find CCSR category column
-  # For procedures, look for "prccsr" first, then general patterns
+  # Find CCSR category column(s)
   if (type == "procedure") {
     ccsr_patterns <- c("^prccsr$", "prccsr", "ccsr.*category", "ccsr.*code", "^ccsr$", "category")
+    for (pattern in ccsr_patterns) {
+      match <- grep(pattern, col_names, value = TRUE)
+      if (length(match) > 0) {
+        result$ccsr_col <- match[1]
+        break
+      }
+    }
   } else {
-    ccsr_patterns <- c("ccsr.*category", "ccsr.*code", "^ccsr$", "category")
-  }
-  for (pattern in ccsr_patterns) {
-    match <- grep(pattern, col_names, value = TRUE)
-    if (length(match) > 0) {
-      result$ccsr_col <- match[1]
-      break
+    diagnosis_slot_cols <- grep("^ccsr.*category.*[1-6]$", col_names, value = TRUE)
+    if (length(diagnosis_slot_cols) > 0) {
+      slot_nums <- suppressWarnings(as.integer(gsub(".*?([1-6])$", "\\1", diagnosis_slot_cols)))
+      diagnosis_slot_cols <- diagnosis_slot_cols[order(slot_nums)]
+      result$ccsr_cols <- diagnosis_slot_cols
+      result$ccsr_col <- diagnosis_slot_cols[1]
     }
   }
   
@@ -287,34 +305,72 @@ identify_mapping_columns <- function(map_df, type, default_only) {
 #' Reshape result to wide format
 #'
 #' @noRd
-reshape_to_wide <- function(data, code_col, ccsr_col) {
-  # For wide format, we need to handle multiple CCSR categories per code
-  # This is a simplified version - in practice, you might want more sophisticated handling
-  
-  # Group by all columns except CCSR, then create numbered CCSR columns
-  group_cols <- setdiff(names(data), c(ccsr_col, code_col))
-  
-  if (length(group_cols) > 0) {
-    data <- data |>
-      dplyr::group_by(dplyr::across(dplyr::all_of(c(code_col, group_cols)))) |>
-      dplyr::mutate(ccsr_num = dplyr::row_number()) |>
-      dplyr::ungroup()
-  } else {
-    data <- data |>
-      dplyr::group_by(dplyr::across(dplyr::all_of(code_col))) |>
-      dplyr::mutate(ccsr_num = dplyr::row_number()) |>
-      dplyr::ungroup()
+reshape_to_wide <- function(data, code_col) {
+  id_cols <- setdiff(names(data), c("ccsr_category", "ccsr_num", "is_default"))
+  base_rows <- unique(data[, id_cols, drop = FALSE])
+  matched_rows <- data[!is.na(data$ccsr_num), , drop = FALSE]
+
+  if (nrow(matched_rows) == 0) {
+    return(base_rows)
   }
-  
-  # Pivot to wide format
-  result <- data |>
+
+  wide_map <- matched_rows |>
     tidyr::pivot_wider(
+      id_cols = dplyr::all_of(id_cols),
       names_from = ccsr_num,
-      values_from = dplyr::all_of(ccsr_col),
+      values_from = dplyr::all_of("ccsr_category"),
       names_prefix = "CCSR_"
     )
+  result <- dplyr::left_join(base_rows, wide_map, by = id_cols)
   
   return(result)
+}
+
+#' Prepare diagnosis mapping for ICD-to-CCSR joins
+#'
+#' @noRd
+prepare_diagnosis_mapping <- function(mapping, map_cols, default_only) {
+  if (length(map_cols$ccsr_cols) == 0 && is.null(map_cols$default_col)) {
+    stop("Could not identify diagnosis CCSR columns in mapping data")
+  }
+
+  if (length(map_cols$ccsr_cols) > 0) {
+    long_map <- mapping |>
+      tidyr::pivot_longer(
+        cols = dplyr::all_of(map_cols$ccsr_cols),
+        names_to = "ccsr_source_col",
+        values_to = "ccsr_category"
+      )
+    long_map$ccsr_num <- suppressWarnings(as.integer(gsub(".*?([1-6])$", "\\1", long_map$ccsr_source_col)))
+  } else {
+    long_map <- mapping
+    long_map$ccsr_category <- NA_character_
+    long_map$ccsr_num <- NA_integer_
+  }
+
+  long_map$ccsr_category <- strip_surrounding_quotes(long_map$ccsr_category)
+  long_map$icd_code <- format_icd_codes(long_map[[map_cols$icd_col]])
+
+  if (!is.null(map_cols$default_col)) {
+    default_vals <- strip_surrounding_quotes(long_map[[map_cols$default_col]])
+    long_map$is_default <- !is.na(long_map$ccsr_category) &
+      nzchar(long_map$ccsr_category) &
+      long_map$ccsr_category == default_vals
+  } else {
+    long_map$is_default <- NA
+  }
+
+  long_map <- long_map[!is.na(long_map$ccsr_category) & nzchar(long_map$ccsr_category), , drop = FALSE]
+
+  if (default_only) {
+    if (!is.null(map_cols$default_col)) {
+      long_map <- long_map[!is.na(long_map$is_default) & long_map$is_default, , drop = FALSE]
+    } else {
+      long_map <- long_map[0, , drop = FALSE]
+    }
+  }
+
+  unique(long_map[, c("icd_code", "ccsr_category", "ccsr_num", "is_default"), drop = FALSE])
 }
 
 # Declare global variables to avoid R CMD check notes

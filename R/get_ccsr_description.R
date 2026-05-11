@@ -50,6 +50,7 @@ get_ccsr_description <- function(ccsr_codes,
   if (!is.character(ccsr_codes) || length(ccsr_codes) == 0) {
     stop("`ccsr_codes` must be a non-empty character vector")
   }
+  ccsr_codes <- strip_surrounding_quotes(ccsr_codes)
   
   # If map_df is not provided, download it
   if (is.null(map_df)) {
@@ -107,6 +108,7 @@ get_ccsr_description <- function(ccsr_codes,
   unique_map <- map_df[, c(ccsr_col, desc_col)] |>
     dplyr::distinct() |>
     dplyr::filter(!is.na(.data[[ccsr_col]]))
+  unique_map[[ccsr_col]] <- strip_surrounding_quotes(unique_map[[ccsr_col]])
   
   # Match codes to descriptions
   join_by <- stats::setNames(ccsr_col, "ccsr_code")
