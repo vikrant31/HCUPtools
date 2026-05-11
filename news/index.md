@@ -1,35 +1,5 @@
 # Changelog
 
-## Version 1.0.1 (2026-04-26)
-
-### Bug fixes
-
-- **[`download_ccsr()`](https://vikrant31.github.io/HCUPtools/reference/download_ccsr.md)
-  /
-  [`read_ccsr()`](https://vikrant31.github.io/HCUPtools/reference/read_ccsr.md)**:
-  Strip surrounding quotes from character columns in HCUP CSVs so ICD
-  and CCSR values join reliably.
-- **[`ccsr_map()`](https://vikrant31.github.io/HCUPtools/reference/ccsr_map.md)**:
-  Diagnosis mapping now expands **CCSR Category 1–6** so
-  cross-classifications appear in long and wide outputs; wide uses
-  slot-aligned `CCSR_1`…`CCSR_6`; long diagnosis output includes
-  **`is_default`**; fixed spurious wide column from unmatched rows.
-- **[`get_ccsr_description()`](https://vikrant31.github.io/HCUPtools/reference/get_ccsr_description.md)**:
-  Normalize quoted CCSR codes when matching.
-- **[`list_ccsr_versions()`](https://vikrant31.github.io/HCUPtools/reference/list_ccsr_versions.md)**:
-  Merge scraped versions with direct file checks so current releases
-  (e.g. v2026.1) appear.
-- **[`ccsr_changelog()`](https://vikrant31.github.io/HCUPtools/reference/ccsr_changelog.md)**:
-  When `version` is explicit, skip interactive prompts for import format
-  and sheet selection by default.
-- **CRAN / `R CMD check`**: `inst/CITATION` now uses
-  [`bibentry()`](https://rdrr.io/r/utils/bibentry.html); examples that
-  require network, local files, or optional PDF tooling use
-  `\donttest{}`; unused `pkgdown` removed from `Suggests`; non-package
-  paths added to `.Rbuildignore`.
-
-------------------------------------------------------------------------
-
 ## Version 1.0.0 (2025-11-29)
 
 CRAN release: 2025-12-10
