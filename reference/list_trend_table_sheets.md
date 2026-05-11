@@ -24,7 +24,7 @@ A character vector of sheet names.
 # \donttest{
 # Requires network: download first, then list sheets from that file path
 path_xlsx <- download_trend_tables("2a")
-#> Using cached file: /tmp/RtmpmUYunL/HCUP_SummaryTrendTables_T2a.xlsx
+#> Using cached file: /tmp/RtmpS6A1fQ/HCUP_SummaryTrendTables_T2a.xlsx
 list_trend_table_sheets(path_xlsx)
 #>  [1] "DUA"                        "HCUP"                      
 #>  [3] "Methods"                    "Coding_Priority_Conditions"
