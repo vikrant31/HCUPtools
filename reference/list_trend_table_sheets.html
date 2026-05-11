@@ -59,38 +59,13 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co"># Requires network: download first, then list sheets from that file path</span></span></span>
 <span class="r-in"><span><span class="va">path_xlsx</span> <span class="op">&lt;-</span> <span class="fu"><a href="download_trend_tables.html">download_trend_tables</a></span><span class="op">(</span><span class="st">"2a"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Using cached file: /tmp/RtmpUogbmT/HCUP_SummaryTrendTables_T2a.xlsx</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Could not fetch trend tables from HCUP website: Failed to perform HTTP request.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Caused by error in `curl::curl_fetch_memory()`:</span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Timeout was reached [hcup-us.ahrq.gov]:</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> Connection timed out after 30002 milliseconds. Using fallback method.</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in download_trend_tables("2a"):</span> Invalid table_id. Use download_trend_tables() to see available tables.</span>
 <span class="r-in"><span><span class="fu">list_trend_table_sheets</span><span class="op">(</span><span class="va">path_xlsx</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "DUA"                        "HCUP"                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "Methods"                    "Coding_Priority_Conditions"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "Coding_Encounter_Type"      "Coding_Deliveries"         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "Coding_Service_Line"        "National"                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "Northeast"                  "Midwest"                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "South"                      "West"                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "Alaska"                     "Arizona"                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [15] "Arkansas"                   "California"                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [17] "Colorado"                   "Connecticut"               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [19] "Delaware"                   "District of Columbia"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [21] "Florida"                    "Georgia"                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [23] "Hawaii"                     "Illinois"                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [25] "Indiana"                    "Iowa"                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [27] "Kansas"                     "Kentucky"                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [29] "Louisiana"                  "Maine"                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [31] "Maryland"                   "Massachusetts"             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [33] "Michigan"                   "Minnesota"                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [35] "Mississippi"                "Missouri"                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [37] "Montana"                    "Nebraska"                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [39] "Nevada"                     "New Jersey"                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [41] "New Mexico"                 "New York"                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [43] "North Carolina"             "North Dakota"              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [45] "Ohio"                       "Oklahoma"                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [47] "Oregon"                     "Pennsylvania"              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [49] "Rhode Island"               "South Carolina"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [51] "South Dakota"               "Tennessee"                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [53] "Texas"                      "Utah"                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [55] "Vermont"                    "Virginia"                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [57] "Washington"                 "West Virginia"             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [59] "Wisconsin"                  "Wyoming"                   </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'path_xlsx' not found</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

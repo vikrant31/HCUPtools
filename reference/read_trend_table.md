@@ -99,123 +99,23 @@ display purposes and does not automatically assign the data.
 # \donttest{
 # Requires network: download a table, list sheets, read data (same file path)
 path_xlsx <- download_trend_tables("2a")
-#> Using cached file: /tmp/RtmpUogbmT/HCUP_SummaryTrendTables_T2a.xlsx
+#> Warning: Could not fetch trend tables from HCUP website: Failed to perform HTTP request.
+#> Caused by error in `curl::curl_fetch_memory()`:
+#> ! Timeout was reached [hcup-us.ahrq.gov]:
+#> Connection timed out after 30001 milliseconds. Using fallback method.
+#> Error in download_trend_tables("2a"): Invalid table_id. Use download_trend_tables() to see available tables.
 list_trend_table_sheets(path_xlsx)
-#>  [1] "DUA"                        "HCUP"                      
-#>  [3] "Methods"                    "Coding_Priority_Conditions"
-#>  [5] "Coding_Encounter_Type"      "Coding_Deliveries"         
-#>  [7] "Coding_Service_Line"        "National"                  
-#>  [9] "Northeast"                  "Midwest"                   
-#> [11] "South"                      "West"                      
-#> [13] "Alaska"                     "Arizona"                   
-#> [15] "Arkansas"                   "California"                
-#> [17] "Colorado"                   "Connecticut"               
-#> [19] "Delaware"                   "District of Columbia"      
-#> [21] "Florida"                    "Georgia"                   
-#> [23] "Hawaii"                     "Illinois"                  
-#> [25] "Indiana"                    "Iowa"                      
-#> [27] "Kansas"                     "Kentucky"                  
-#> [29] "Louisiana"                  "Maine"                     
-#> [31] "Maryland"                   "Massachusetts"             
-#> [33] "Michigan"                   "Minnesota"                 
-#> [35] "Mississippi"                "Missouri"                  
-#> [37] "Montana"                    "Nebraska"                  
-#> [39] "Nevada"                     "New Jersey"                
-#> [41] "New Mexico"                 "New York"                  
-#> [43] "North Carolina"             "North Dakota"              
-#> [45] "Ohio"                       "Oklahoma"                  
-#> [47] "Oregon"                     "Pennsylvania"              
-#> [49] "Rhode Island"               "South Carolina"            
-#> [51] "South Dakota"               "Tennessee"                 
-#> [53] "Texas"                      "Utah"                      
-#> [55] "Vermont"                    "Virginia"                  
-#> [57] "Washington"                 "West Virginia"             
-#> [59] "Wisconsin"                  "Wyoming"                   
+#> Error: object 'path_xlsx' not found
 national_data <- read_trend_table(file_path = path_xlsx, as_data_table = FALSE)
-#> Reading sheet: National
-#> New names:
-#> • `` -> `...2`
-#> • `` -> `...3`
-#> • `` -> `...4`
-#> • `` -> `...5`
-#> • `` -> `...6`
-#> • `` -> `...7`
-#> • `` -> `...8`
-#> • `` -> `...9`
-#> • `` -> `...10`
-#> • `` -> `...11`
-#> • `` -> `...12`
-#> • `` -> `...13`
-#> • `` -> `...14`
-#> • `` -> `...15`
-#> • `` -> `...16`
-#> • `` -> `...17`
-#> • `` -> `...18`
-#> • `` -> `...19`
-#> • `` -> `...20`
-#> • `` -> `...21`
-#> • `` -> `...22`
-#> • `` -> `...23`
-#> • `` -> `...24`
-#> • `` -> `...25`
+#> Error: object 'path_xlsx' not found
 head(national_data)
-#> # A tibble: 6 × 25
-#>   hcup_summary_trend_tab…¹ `2`   `3`   `4`   `5`   `6`   `7`   `8`   `9`   `10` 
-#>   <chr>                    <chr> <chr> <chr> <chr> <chr> <chr> <chr> <chr> <chr>
-#> 1 National - Table 2a. Al… NA    NA    NA    NA    NA    NA    NA    NA    NA   
-#> 2 Asterisks (***) indicat… NA    NA    NA    NA    NA    NA    NA    NA    NA   
-#> 3 Counts less than or equ… NA    NA    NA    NA    NA    NA    NA    NA    NA   
-#> 4 Source: Agency for Heal… NA    NA    NA    NA    NA    NA    NA    NA    NA   
-#> 5 Characteristic by Quart… 2017… 2017… 2017… 2017… 2018… 2018… 2018… 2018… 2019…
-#> 6 Number of Discharges fo… NA    NA    NA    NA    NA    NA    NA    NA    NA   
-#> # ℹ abbreviated name: ¹​hcup_summary_trend_tables
-#> # ℹ 15 more variables: `11` <chr>, `12` <chr>, `13` <chr>, `14` <chr>,
-#> #   `15` <chr>, `16` <chr>, `17` <chr>, `18` <chr>, `19` <chr>, `20` <chr>,
-#> #   `21` <chr>, `22` <chr>, `23` <chr>, `24` <chr>, `25` <chr>
+#> Error: object 'national_data' not found
 
 # After a download, you can also read from cache by table ID
 table_2a <- read_trend_table(table_id = "2a", as_data_table = FALSE)
-#> Reading cached file: HCUP_SummaryTrendTables_T2a.xlsx
-#> Reading sheet: National
-#> New names:
-#> • `` -> `...2`
-#> • `` -> `...3`
-#> • `` -> `...4`
-#> • `` -> `...5`
-#> • `` -> `...6`
-#> • `` -> `...7`
-#> • `` -> `...8`
-#> • `` -> `...9`
-#> • `` -> `...10`
-#> • `` -> `...11`
-#> • `` -> `...12`
-#> • `` -> `...13`
-#> • `` -> `...14`
-#> • `` -> `...15`
-#> • `` -> `...16`
-#> • `` -> `...17`
-#> • `` -> `...18`
-#> • `` -> `...19`
-#> • `` -> `...20`
-#> • `` -> `...21`
-#> • `` -> `...22`
-#> • `` -> `...23`
-#> • `` -> `...24`
-#> • `` -> `...25`
+#> Error in read_trend_table(table_id = "2a", as_data_table = FALSE): No cached trend table files found. Please download a file first using `download_trend_tables()` or provide a `file_path`.
 head(table_2a)
-#> # A tibble: 6 × 25
-#>   hcup_summary_trend_tab…¹ `2`   `3`   `4`   `5`   `6`   `7`   `8`   `9`   `10` 
-#>   <chr>                    <chr> <chr> <chr> <chr> <chr> <chr> <chr> <chr> <chr>
-#> 1 National - Table 2a. Al… NA    NA    NA    NA    NA    NA    NA    NA    NA   
-#> 2 Asterisks (***) indicat… NA    NA    NA    NA    NA    NA    NA    NA    NA   
-#> 3 Counts less than or equ… NA    NA    NA    NA    NA    NA    NA    NA    NA   
-#> 4 Source: Agency for Heal… NA    NA    NA    NA    NA    NA    NA    NA    NA   
-#> 5 Characteristic by Quart… 2017… 2017… 2017… 2017… 2018… 2018… 2018… 2018… 2019…
-#> 6 Number of Discharges fo… NA    NA    NA    NA    NA    NA    NA    NA    NA   
-#> # ℹ abbreviated name: ¹​hcup_summary_trend_tables
-#> # ℹ 15 more variables: `11` <chr>, `12` <chr>, `13` <chr>, `14` <chr>,
-#> #   `15` <chr>, `16` <chr>, `17` <chr>, `18` <chr>, `19` <chr>, `20` <chr>,
-#> #   `21` <chr>, `22` <chr>, `23` <chr>, `24` <chr>, `25` <chr>
+#> Error: object 'table_2a' not found
 
 # With a file already on disk, pass its path to `read_trend_table(file_path = ...)`.
 # }

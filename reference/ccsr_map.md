@@ -88,9 +88,12 @@ to extract only this default category.
 # \donttest{
 # Download mapping file
 dx_map <- download_ccsr("diagnosis")
+#> Warning: Could not determine latest version from HCUP website. Using fallback version: v2026.1. This may not be the actual latest version.
 #> Downloading from: https://hcup-us.ahrq.gov/toolssoftware/ccsr/DXCCSR-v2026-1.zip
-#> Download complete: /tmp/RtmpUogbmT/HCUPtools_cache/DXCCSR-v2026-1.zip
-#> Reading mapping file: DXCCSR_v2026-1.csv
+#> Error in value[[3L]](cond): Failed to download file: Failed to perform HTTP request.
+#> Caused by error in `curl::curl_fetch_memory()`:
+#> ! Timeout was reached [hcup-us.ahrq.gov]:
+#> Connection timed out after 60001 milliseconds
 
 # Create sample data
 sample_data <- tibble::tibble(
@@ -104,6 +107,7 @@ mapped_long <- ccsr_map(
   code_col = "icd10_code",
   map_df = dx_map
 )
+#> Error: object 'dx_map' not found
 
 # Map codes (wide format)
 mapped_wide <- ccsr_map(
@@ -112,6 +116,7 @@ mapped_wide <- ccsr_map(
   map_df = dx_map,
   output_format = "wide"
 )
+#> Error: object 'dx_map' not found
 
 # Map codes (default category only)
 mapped_default <- ccsr_map(
@@ -120,5 +125,6 @@ mapped_default <- ccsr_map(
   map_df = dx_map,
   default_only = TRUE
 )
+#> Error: object 'dx_map' not found
 # }
 ```

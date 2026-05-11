@@ -113,27 +113,23 @@ assign the data.
 # \donttest{
 # Populate cache, then read (requires network)
 invisible(download_ccsr("diagnosis"))
-#> Using cached file: /tmp/RtmpUogbmT/HCUPtools_cache/DXCCSR-v2026-1.zip
-#> Reading mapping file: DXCCSR_v2026-1.csv
+#> Warning: Could not determine latest version from HCUP website. Using fallback version: v2026.1. This may not be the actual latest version.
+#> Downloading from: https://hcup-us.ahrq.gov/toolssoftware/ccsr/DXCCSR-v2026-1.zip
+#> Error in value[[3L]](cond): Failed to download file: Failed to perform HTTP request.
+#> Caused by error in `curl::curl_fetch_memory()`:
+#> ! Timeout was reached [hcup-us.ahrq.gov]:
+#> Connection timed out after 60002 milliseconds
 dx_map <- read_ccsr(as_data_table = FALSE)
-#> 
-#> === Available Cached CCSR Files ===
-#> 
-#>  1. DXCCSR-v2026-1.zip (Diagnosis, v2026-1)
-#>  2. PRCCSR_v2025-1.zip (Procedure, v2025-1)
-#> 
+#> Error in read_ccsr(as_data_table = FALSE): No cached CCSR file found. Please download a file first using `download_ccsr()` or provide a `file_path`.
 invisible(download_ccsr("procedure"))
-#> Cached files found (v2025.1) but latest is v2026.1. Downloading latest version...
+#> Warning: Could not determine latest version from HCUP website. Using fallback version: v2026.1. This may not be the actual latest version.
 #> Downloading from: https://hcup-us.ahrq.gov/toolssoftware/ccsr/PRCCSR_v2026-1.zip
-#> Download complete: /tmp/RtmpUogbmT/HCUPtools_cache/PRCCSR_v2026-1.zip
-#> Reading mapping file: PRCCSR_v2026-1.csv
+#> Error in value[[3L]](cond): Failed to download file: Failed to perform HTTP request.
+#> Caused by error in `curl::curl_fetch_memory()`:
+#> ! Timeout was reached [hcup-us.ahrq.gov]:
+#> Connection timed out after 60002 milliseconds
 pr_map <- read_ccsr(type = "procedure", as_data_table = FALSE)
-#> 
-#> === Available Cached CCSR Files ===
-#> 
-#>  1. PRCCSR_v2025-1.zip (Procedure, v2025-1)
-#>  2. PRCCSR_v2026-1.zip (Procedure, v2026-1)
-#> 
+#> Error in read_ccsr(type = "procedure", as_data_table = FALSE): No cached CCSR file found. Please download a file first using `download_ccsr()` or provide a `file_path`.
 
 # From a local file on your machine (uncomment and set the path):
 # dx_map <- read_ccsr("/path/to/DXCCSR-v2026-1.zip", as_data_table = FALSE)
@@ -141,23 +137,8 @@ pr_map <- read_ccsr(type = "procedure", as_data_table = FALSE)
 # dx_map <- read_ccsr("/path/to/extracted_ccsr_files/", as_data_table = FALSE)
 
 head(dx_map)
-#> # A tibble: 6 × 19
-#>   icd10cm_code icd10cm_code_description                   default_ccsr_categor…¹
-#>   <chr>        <chr>                                      <chr>                 
-#> 1 A000         Cholera due to Vibrio cholerae 01, biovar… DIG001                
-#> 2 A001         Cholera due to Vibrio cholerae 01, biovar… DIG001                
-#> 3 A009         Cholera, unspecified                       DIG001                
-#> 4 A0100        Typhoid fever, unspecified                 DIG001                
-#> 5 A0101        Typhoid meningitis                         NVS001                
-#> 6 A0102        Typhoid fever with heart involvement       INF003                
-#> # ℹ abbreviated name: ¹​default_ccsr_category_ip
-#> # ℹ 16 more variables: default_ccsr_category_description_ip <chr>,
-#> #   default_ccsr_category_op <chr>, default_ccsr_category_description_op <chr>,
-#> #   ccsr_category_1 <chr>, ccsr_category_1_description <chr>,
-#> #   ccsr_category_2 <chr>, ccsr_category_2_description <chr>,
-#> #   ccsr_category_3 <chr>, ccsr_category_3_description <chr>,
-#> #   ccsr_category_4 <chr>, ccsr_category_4_description <chr>, …
+#> Error: object 'dx_map' not found
 nrow(dx_map)
-#> [1] 75725
+#> Error: object 'dx_map' not found
 # }
 ```

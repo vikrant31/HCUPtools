@@ -38,46 +38,14 @@ website cannot be accessed, the function will return an error.
 # \donttest{
 # List all available versions
 list_ccsr_versions()
-#> # A tibble: 13 × 2
-#>    type      version
-#>    <chr>     <chr>  
-#>  1 diagnosis v2026.1
-#>  2 procedure v2026.1
-#>  3 diagnosis v2025.1
-#>  4 procedure v2025.1
-#>  5 diagnosis v2024.1
-#>  6 procedure v2024.1
-#>  7 diagnosis v2023.1
-#>  8 procedure v2023.1
-#>  9 diagnosis v2022.1
-#> 10 procedure v2022.1
-#> 11 diagnosis v2021.2
-#> 12 diagnosis v2021.1
-#> 13 procedure v2021.1
+#> Error in list_ccsr_versions(): Could not retrieve CCSR versions from HCUP website. Please check your internet connection and try again.
 
 # List only diagnosis versions
 list_ccsr_versions("diagnosis")
-#> # A tibble: 7 × 2
-#>   type      version
-#>   <chr>     <chr>  
-#> 1 diagnosis v2026.1
-#> 2 diagnosis v2025.1
-#> 3 diagnosis v2024.1
-#> 4 diagnosis v2023.1
-#> 5 diagnosis v2022.1
-#> 6 diagnosis v2021.2
-#> 7 diagnosis v2021.1
+#> Error in list_ccsr_versions("diagnosis"): Could not retrieve CCSR versions from HCUP website. Please check your internet connection and try again.
 
 # List only procedure versions
 list_ccsr_versions("procedure")
-#> # A tibble: 6 × 2
-#>   type      version
-#>   <chr>     <chr>  
-#> 1 procedure v2026.1
-#> 2 procedure v2025.1
-#> 3 procedure v2024.1
-#> 4 procedure v2023.1
-#> 5 procedure v2022.1
-#> 6 procedure v2021.1
+#> Error in list_ccsr_versions("procedure"): Could not retrieve CCSR versions from HCUP website. Please check your internet connection and try again.
 # }
 ```

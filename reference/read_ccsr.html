@@ -133,27 +133,23 @@ purposes and does not automatically assign the data.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co"># Populate cache, then read (requires network)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/invisible.html" class="external-link">invisible</a></span><span class="op">(</span><span class="fu"><a href="download_ccsr.html">download_ccsr</a></span><span class="op">(</span><span class="st">"diagnosis"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Using cached file: /tmp/RtmpUogbmT/HCUPtools_cache/DXCCSR-v2026-1.zip</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading mapping file: DXCCSR_v2026-1.csv</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Could not determine latest version from HCUP website. Using fallback version: v2026.1. This may not be the actual latest version.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading from: https://hcup-us.ahrq.gov/toolssoftware/ccsr/DXCCSR-v2026-1.zip</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in value[[3L]](cond):</span> Failed to download file: Failed to perform HTTP request.</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Caused by error in `curl::curl_fetch_memory()`:</span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Timeout was reached [hcup-us.ahrq.gov]:</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> Connection timed out after 60002 milliseconds</span>
 <span class="r-in"><span><span class="va">dx_map</span> <span class="op">&lt;-</span> <span class="fu">read_ccsr</span><span class="op">(</span>as_data_table <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> === Available Cached CCSR Files ===</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  1. DXCCSR-v2026-1.zip (Diagnosis, v2026-1)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  2. PRCCSR_v2025-1.zip (Procedure, v2025-1)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in read_ccsr(as_data_table = FALSE):</span> No cached CCSR file found. Please download a file first using `download_ccsr()` or provide a `file_path`.</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/invisible.html" class="external-link">invisible</a></span><span class="op">(</span><span class="fu"><a href="download_ccsr.html">download_ccsr</a></span><span class="op">(</span><span class="st">"procedure"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Cached files found (v2025.1) but latest is v2026.1. Downloading latest version...</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Could not determine latest version from HCUP website. Using fallback version: v2026.1. This may not be the actual latest version.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading from: https://hcup-us.ahrq.gov/toolssoftware/ccsr/PRCCSR_v2026-1.zip</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Download complete: /tmp/RtmpUogbmT/HCUPtools_cache/PRCCSR_v2026-1.zip</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading mapping file: PRCCSR_v2026-1.csv</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in value[[3L]](cond):</span> Failed to download file: Failed to perform HTTP request.</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Caused by error in `curl::curl_fetch_memory()`:</span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Timeout was reached [hcup-us.ahrq.gov]:</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> Connection timed out after 60002 milliseconds</span>
 <span class="r-in"><span><span class="va">pr_map</span> <span class="op">&lt;-</span> <span class="fu">read_ccsr</span><span class="op">(</span>type <span class="op">=</span> <span class="st">"procedure"</span>, as_data_table <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> === Available Cached CCSR Files ===</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  1. PRCCSR_v2025-1.zip (Procedure, v2025-1)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  2. PRCCSR_v2026-1.zip (Procedure, v2026-1)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in read_ccsr(type = "procedure", as_data_table = FALSE):</span> No cached CCSR file found. Please download a file first using `download_ccsr()` or provide a `file_path`.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># From a local file on your machine (uncomment and set the path):</span></span></span>
 <span class="r-in"><span><span class="co"># dx_map &lt;- read_ccsr("/path/to/DXCCSR-v2026-1.zip", as_data_table = FALSE)</span></span></span>
@@ -161,24 +157,9 @@ purposes and does not automatically assign the data.</p>
 <span class="r-in"><span><span class="co"># dx_map &lt;- read_ccsr("/path/to/extracted_ccsr_files/", as_data_table = FALSE)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">dx_map</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 19</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   icd10cm_code icd10cm_code_description                   default_ccsr_categor…¹</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> A000         Cholera due to Vibrio cholerae 01, biovar… DIG001                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> A001         Cholera due to Vibrio cholerae 01, biovar… DIG001                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> A009         Cholera, unspecified                       DIG001                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> A0100        Typhoid fever, unspecified                 DIG001                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> A0101        Typhoid meningitis                         NVS001                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> A0102        Typhoid fever with heart involvement       INF003                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​default_ccsr_category_ip</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 16 more variables: default_ccsr_category_description_ip &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   default_ccsr_category_op &lt;chr&gt;, default_ccsr_category_description_op &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ccsr_category_1 &lt;chr&gt;, ccsr_category_1_description &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ccsr_category_2 &lt;chr&gt;, ccsr_category_2_description &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ccsr_category_3 &lt;chr&gt;, ccsr_category_3_description &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ccsr_category_4 &lt;chr&gt;, ccsr_category_4_description &lt;chr&gt;, …</span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'dx_map' not found</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">dx_map</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 75725</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'dx_map' not found</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

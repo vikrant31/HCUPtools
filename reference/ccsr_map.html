@@ -121,9 +121,12 @@ extract only this default category.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co"># Download mapping file</span></span></span>
 <span class="r-in"><span><span class="va">dx_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="download_ccsr.html">download_ccsr</a></span><span class="op">(</span><span class="st">"diagnosis"</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Could not determine latest version from HCUP website. Using fallback version: v2026.1. This may not be the actual latest version.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading from: https://hcup-us.ahrq.gov/toolssoftware/ccsr/DXCCSR-v2026-1.zip</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Download complete: /tmp/RtmpUogbmT/HCUPtools_cache/DXCCSR-v2026-1.zip</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading mapping file: DXCCSR_v2026-1.csv</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in value[[3L]](cond):</span> Failed to download file: Failed to perform HTTP request.</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Caused by error in `curl::curl_fetch_memory()`:</span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Timeout was reached [hcup-us.ahrq.gov]:</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> Connection timed out after 60001 milliseconds</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Create sample data</span></span></span>
 <span class="r-in"><span><span class="va">sample_data</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span></span>
@@ -137,6 +140,7 @@ extract only this default category.</p>
 <span class="r-in"><span>  code_col <span class="op">=</span> <span class="st">"icd10_code"</span>,</span></span>
 <span class="r-in"><span>  map_df <span class="op">=</span> <span class="va">dx_map</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'dx_map' not found</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Map codes (wide format)</span></span></span>
 <span class="r-in"><span><span class="va">mapped_wide</span> <span class="op">&lt;-</span> <span class="fu">ccsr_map</span><span class="op">(</span></span></span>
@@ -145,6 +149,7 @@ extract only this default category.</p>
 <span class="r-in"><span>  map_df <span class="op">=</span> <span class="va">dx_map</span>,</span></span>
 <span class="r-in"><span>  output_format <span class="op">=</span> <span class="st">"wide"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'dx_map' not found</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Map codes (default category only)</span></span></span>
 <span class="r-in"><span><span class="va">mapped_default</span> <span class="op">&lt;-</span> <span class="fu">ccsr_map</span><span class="op">(</span></span></span>
@@ -153,6 +158,7 @@ extract only this default category.</p>
 <span class="r-in"><span>  map_df <span class="op">=</span> <span class="va">dx_map</span>,</span></span>
 <span class="r-in"><span>  default_only <span class="op">=</span> <span class="cn">TRUE</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'dx_map' not found</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
