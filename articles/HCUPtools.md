@@ -10,7 +10,7 @@ analysis tasks.
 
 ``` r
 
-# Install from CRAN
+# Install from CRAN (evaluated only when you knit locally; skipped during R CMD check)
 install.packages("HCUPtools")
 
 # Load the package
@@ -134,9 +134,10 @@ head(mapped_wide)
 ```
 
 **Use Case**: Wide format is ideal when you want to: - Keep all CCSR
-categories for each patient in a single row - Perform patient-level
-analysis - Maintain the original data structure with additional CCSR
-columns
+category slots on one row per **input diagnosis code row** - Then
+aggregate to patient or encounter level with your own rules (e.g.,
+principal diagnosis) - Maintain the original data structure with
+additional CCSR columns
 
 ### Default Category Only
 
