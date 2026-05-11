@@ -53,6 +53,7 @@ HCUP data use policies.
 ## Installation
 
 ``` r
+
 # Install from CRAN
 install.packages("HCUPtools")
 
@@ -65,6 +66,7 @@ library(HCUPtools)
 ### Basic Workflow
 
 ``` r
+
 # 1. Download the latest diagnosis CCSR mapping file
 dx_map <- download_ccsr("diagnosis")
 
@@ -98,6 +100,7 @@ hcup_citation()
 ### 1. Downloading CCSR Mapping Files
 
 ``` r
+
 # Download latest version (recommended)
 dx_map <- download_ccsr("diagnosis")
 pr_map <- download_ccsr("procedure")
@@ -127,6 +130,7 @@ Best for cross-classification analysis where you need to count all
 assigned CCSR categories:
 
 ``` r
+
 # Long format - duplicates records for each CCSR category
 mapped_long <- ccsr_map(
   data = sample_data,
@@ -145,6 +149,7 @@ Best for patient-level analysis where you want all categories in one
 row:
 
 ``` r
+
 # Wide format - multiple CCSR columns
 mapped_wide <- ccsr_map(
   data = sample_data,
@@ -162,6 +167,7 @@ mapped_wide <- ccsr_map(
 Best for principal diagnosis analysis:
 
 ``` r
+
 # Default category only (diagnosis codes only)
 mapped_default <- ccsr_map(
   data = sample_data,
@@ -177,6 +183,7 @@ mapped_default <- ccsr_map(
 ### 3. Working with Procedure Codes
 
 ``` r
+
 # Download procedure mapping
 pr_map <- download_ccsr("procedure")
 
@@ -197,6 +204,7 @@ mapped_procedures <- ccsr_map(
 ### 4. Accessing CCSR Descriptions
 
 ``` r
+
 # Get descriptions for specific CCSR codes
 ccsr_codes <- c("ADM010", "NEP003", "CIR019", "END001")
 descriptions <- get_ccsr_description(ccsr_codes, map_df = dx_map)
@@ -212,6 +220,7 @@ descriptions_auto <- get_ccsr_description(
 ### 5. Downloading HCUP Summary Trend Tables
 
 ``` r
+
 # List all available tables (interactive menu)
 available_tables <- download_trend_tables()
 
@@ -227,6 +236,7 @@ all_tables <- download_trend_tables("all")
 If you’ve already downloaded files, read them directly:
 
 ``` r
+
 # Read CCSR file from various formats
 dx_map <- read_ccsr("path/to/DXCCSR-v2026-1.zip")
 dx_map <- read_ccsr("path/to/DXCCSR_v2026-1.csv")
@@ -254,6 +264,7 @@ state_data <- read_trend_table(
 ### 7. Viewing CCSR Change Logs
 
 ``` r
+
 # Get change log as data table (default)
 changelog <- ccsr_changelog(version = "v2026.1")
 print(changelog)
@@ -273,6 +284,7 @@ changelog_file <- ccsr_changelog(version = "v2026.1", format = "download")
 Always cite HCUP data properly in publications:
 
 ``` r
+
 # Text citation for CCSR
 cat(hcup_citation())
 
@@ -289,18 +301,18 @@ print(citation_obj)
 
 ## Complete Function Reference
 
-| Function                                                                                                  | Description                                                       |
-|-----------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------|
-| [`download_ccsr()`](https://vikrant31.github.io/HCUPtools/reference/download_ccsr.md)                     | Download CCSR mapping files from HCUP website                     |
-| [`read_ccsr()`](https://vikrant31.github.io/HCUPtools/reference/read_ccsr.md)                             | Read CCSR mapping files from disk (ZIP, CSV, Excel, or directory) |
-| [`ccsr_map()`](https://vikrant31.github.io/HCUPtools/reference/ccsr_map.md)                               | Map ICD-10 codes to CCSR categories (long/wide/default formats)   |
-| [`get_ccsr_description()`](https://vikrant31.github.io/HCUPtools/reference/get_ccsr_description.md)       | Get clinical descriptions for CCSR codes                          |
-| [`list_ccsr_versions()`](https://vikrant31.github.io/HCUPtools/reference/list_ccsr_versions.md)           | List available CCSR versions                                      |
-| [`ccsr_changelog()`](https://vikrant31.github.io/HCUPtools/reference/ccsr_changelog.md)                   | Get CCSR change log for a specific version                        |
-| [`download_trend_tables()`](https://vikrant31.github.io/HCUPtools/reference/download_trend_tables.md)     | Download HCUP Summary Trend Tables                                |
-| [`read_trend_table()`](https://vikrant31.github.io/HCUPtools/reference/read_trend_table.md)               | Read HCUP Summary Trend Table Excel files from disk               |
-| [`list_trend_table_sheets()`](https://vikrant31.github.io/HCUPtools/reference/list_trend_table_sheets.md) | List available sheets in a trend table file                       |
-| [`hcup_citation()`](https://vikrant31.github.io/HCUPtools/reference/hcup_citation.md)                     | Generate citations for HCUP resources (CCSR or Trend Tables)      |
+| Function | Description |
+|----|----|
+| [`download_ccsr()`](https://vikrant31.github.io/HCUPtools/reference/download_ccsr.md) | Download CCSR mapping files from HCUP website |
+| [`read_ccsr()`](https://vikrant31.github.io/HCUPtools/reference/read_ccsr.md) | Read CCSR mapping files from disk (ZIP, CSV, Excel, or directory) |
+| [`ccsr_map()`](https://vikrant31.github.io/HCUPtools/reference/ccsr_map.md) | Map ICD-10 codes to CCSR categories (long/wide/default formats) |
+| [`get_ccsr_description()`](https://vikrant31.github.io/HCUPtools/reference/get_ccsr_description.md) | Get clinical descriptions for CCSR codes |
+| [`list_ccsr_versions()`](https://vikrant31.github.io/HCUPtools/reference/list_ccsr_versions.md) | List available CCSR versions |
+| [`ccsr_changelog()`](https://vikrant31.github.io/HCUPtools/reference/ccsr_changelog.md) | Get CCSR change log for a specific version |
+| [`download_trend_tables()`](https://vikrant31.github.io/HCUPtools/reference/download_trend_tables.md) | Download HCUP Summary Trend Tables |
+| [`read_trend_table()`](https://vikrant31.github.io/HCUPtools/reference/read_trend_table.md) | Read HCUP Summary Trend Table Excel files from disk |
+| [`list_trend_table_sheets()`](https://vikrant31.github.io/HCUPtools/reference/list_trend_table_sheets.md) | List available sheets in a trend table file |
+| [`hcup_citation()`](https://vikrant31.github.io/HCUPtools/reference/hcup_citation.md) | Generate citations for HCUP resources (CCSR or Trend Tables) |
 
 ## Important Legal and Compliance Information
 
@@ -404,6 +416,7 @@ If you use this package in your research, please cite both the package
 and the HCUP data:
 
 ``` r
+
 # Package citation
 citation("HCUPtools")
 

@@ -6,6 +6,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Getting Started with HCUPtools • HCUPtools</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" sizes="any" href="../favicon.ico">
+<link rel="manifest" href="../site.webmanifest">
 <script src="../lightswitch.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Inter-0.4.10/font.css" rel="stylesheet">
@@ -22,7 +27,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">HCUPtools</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,7 +60,7 @@
                         <h4 data-toc-skip class="author">Vikrant Dev
 Rathore</h4>
             
-            <h4 data-toc-skip class="date">2025-12-16</h4>
+            <h4 data-toc-skip class="date">2026-05-11</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/vikrant31/HCUPtools/blob/main/vignettes/HCUPtools.Rmd" class="external-link"><code>vignettes/HCUPtools.Rmd</code></a></small>
       <div class="d-none name"><code>HCUPtools.Rmd</code></div>
@@ -72,7 +77,7 @@ healthcare data analysis tasks.</p>
 <h2 id="installation-and-setup">Installation and Setup<a class="anchor" aria-label="anchor" href="#installation-and-setup"></a>
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Install from CRAN</span></span>
+<code class="sourceCode R"><span><span class="co"># Install from CRAN (evaluated only when you knit locally; skipped during R CMD check)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"HCUPtools"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Load the package</span></span>
@@ -186,9 +191,10 @@ multiple categories, keeping one row per ICD-10 code.</p>
 <span><span class="co"># View the results</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mapped_wide</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Use Case</strong>: Wide format is ideal when you want to: -
-Keep all CCSR categories for each patient in a single row - Perform
-patient-level analysis - Maintain the original data structure with
-additional CCSR columns</p>
+Keep all CCSR category slots on one row per <strong>input diagnosis code
+row</strong> - Then aggregate to patient or encounter level with your
+own rules (e.g., principal diagnosis) - Maintain the original data
+structure with additional CCSR columns</p>
 </div>
 <div class="section level3">
 <h3 id="default-category-only">Default Category Only<a class="anchor" aria-label="anchor" href="#default-category-only"></a>

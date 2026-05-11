@@ -73,19 +73,19 @@ The function handles:
 # \donttest{
 # Download latest diagnosis CCSR mapping
 dx_map <- download_ccsr("diagnosis")
-#> Using cached file: /tmp/RtmpcIBM7b/HCUPtools_cache/DXCCSR-v2026-1.zip
+#> Using cached file: /tmp/Rtmpjir88H/HCUPtools_cache/DXCCSR-v2026-1.zip
 #> Reading mapping file: DXCCSR_v2026-1.csv
 
 # Download specific version of procedure CCSR mapping
 pr_map <- download_ccsr("procedure", version = "v2025.1")
 #> Downloading from: https://hcup-us.ahrq.gov/toolssoftware/ccsr/PRCCSR_v2025-1.zip
-#> Download complete: /tmp/RtmpcIBM7b/HCUPtools_cache/PRCCSR_v2025-1.zip
+#> Download complete: /tmp/Rtmpjir88H/HCUPtools_cache/PRCCSR_v2025-1.zip
 #> Reading mapping file: PRCCSR_v2025-1.csv
 
 # Download without caching
 dx_map <- download_ccsr("diagnosis", cache = FALSE)
 #> Downloading from: https://hcup-us.ahrq.gov/toolssoftware/ccsr/DXCCSR-v2026-1.zip
-#> Download complete: /tmp/RtmpcIBM7b/file18615cf88265.zip
+#> Download complete: /tmp/Rtmpjir88H/file1ef6523a392.zip
 #> Reading mapping file: DXCCSR_v2026-1.csv
 # }
 ```
