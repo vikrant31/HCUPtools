@@ -73,28 +73,19 @@ The function handles:
 # \donttest{
 # Download latest diagnosis CCSR mapping
 dx_map <- download_ccsr("diagnosis")
-#> Warning: Could not determine latest version from HCUP website. Using fallback version: v2026.1. This may not be the actual latest version.
-#> Downloading from: https://hcup-us.ahrq.gov/toolssoftware/ccsr/DXCCSR-v2026-1.zip
-#> Error in value[[3L]](cond): Failed to download file: Failed to perform HTTP request.
-#> Caused by error in `curl::curl_fetch_memory()`:
-#> ! Timeout was reached [hcup-us.ahrq.gov]:
-#> Connection timed out after 60000 milliseconds
+#> Using cached file: /tmp/RtmpHPIK2k/HCUPtools_cache/DXCCSR-v2026-1.zip
+#> Reading mapping file: DXCCSR_v2026-1.csv
 
 # Download specific version of procedure CCSR mapping
 pr_map <- download_ccsr("procedure", version = "v2025.1")
 #> Downloading from: https://hcup-us.ahrq.gov/toolssoftware/ccsr/PRCCSR_v2025-1.zip
-#> Error in value[[3L]](cond): Failed to download file: Failed to perform HTTP request.
-#> Caused by error in `curl::curl_fetch_memory()`:
-#> ! Timeout was reached [hcup-us.ahrq.gov]:
-#> Connection timed out after 60001 milliseconds
+#> Download complete: /tmp/RtmpHPIK2k/HCUPtools_cache/PRCCSR_v2025-1.zip
+#> Reading mapping file: PRCCSR_v2025-1.csv
 
 # Download without caching
 dx_map <- download_ccsr("diagnosis", cache = FALSE)
-#> Warning: Could not determine latest version from HCUP website. Using fallback version: v2026.1. This may not be the actual latest version.
 #> Downloading from: https://hcup-us.ahrq.gov/toolssoftware/ccsr/DXCCSR-v2026-1.zip
-#> Error in value[[3L]](cond): Failed to download file: Failed to perform HTTP request.
-#> Caused by error in `curl::curl_fetch_memory()`:
-#> ! Timeout was reached [hcup-us.ahrq.gov]:
-#> Connection timed out after 60002 milliseconds
+#> Download complete: /tmp/RtmpHPIK2k/file1ed547c57c0e.zip
+#> Reading mapping file: DXCCSR_v2026-1.csv
 # }
 ```

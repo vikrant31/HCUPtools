@@ -60,23 +60,27 @@ result.
 # \donttest{
 # Get descriptions using downloaded mapping data
 dx_map <- download_ccsr("diagnosis")
-#> Warning: Could not determine latest version from HCUP website. Using fallback version: v2026.1. This may not be the actual latest version.
-#> Downloading from: https://hcup-us.ahrq.gov/toolssoftware/ccsr/DXCCSR-v2026-1.zip
-#> Error in value[[3L]](cond): Failed to download file: Failed to perform HTTP request.
-#> Caused by error in `curl::curl_fetch_memory()`:
-#> ! Timeout was reached [hcup-us.ahrq.gov]:
-#> Connection timed out after 60002 milliseconds
+#> Using cached file: /tmp/RtmpHPIK2k/HCUPtools_cache/DXCCSR-v2026-1.zip
+#> Reading mapping file: DXCCSR_v2026-1.csv
 get_ccsr_description(c("ADM010", "NEP003", "CIR019"), map_df = dx_map)
-#> Error: object 'dx_map' not found
+#> Warning: No description found for 2 code(s): ADM010, NEP003
+#> # A tibble: 3 × 2
+#>   ccsr_code description  
+#>   <chr>     <chr>        
+#> 1 ADM010    NA           
+#> 2 NEP003    NA           
+#> 3 CIR019    Heart failure
 
 # Get descriptions without pre-downloaded data (will download automatically)
 get_ccsr_description(c("ADM010", "NEP003"), type = "diagnosis")
 #> Downloading CCSR mapping file to extract descriptions...
-#> Warning: Could not determine latest version from HCUP website. Using fallback version: v2026.1. This may not be the actual latest version.
-#> Downloading from: https://hcup-us.ahrq.gov/toolssoftware/ccsr/DXCCSR-v2026-1.zip
-#> Error in value[[3L]](cond): Failed to download file: Failed to perform HTTP request.
-#> Caused by error in `curl::curl_fetch_memory()`:
-#> ! Timeout was reached [hcup-us.ahrq.gov]:
-#> Connection timed out after 60001 milliseconds
+#> Using cached file: /tmp/RtmpHPIK2k/HCUPtools_cache/DXCCSR-v2026-1.zip
+#> Reading mapping file: DXCCSR_v2026-1.csv
+#> Warning: No description found for 2 code(s): ADM010, NEP003
+#> # A tibble: 2 × 2
+#>   ccsr_code description
+#>   <chr>     <chr>      
+#> 1 ADM010    NA         
+#> 2 NEP003    NA         
 # }
 ```

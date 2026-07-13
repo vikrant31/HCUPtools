@@ -1,6 +1,19 @@
 # Changelog
 
+## Version 1.0.2 (2026-07-12)
+
+### Documentation
+
+- **`inst/CITATION`**: Cite the published SoftwareX article (Rathore,
+  2026, *SoftwareX* 35:102860,
+  <https://doi.org/10.1016/j.softx.2026.102860>) in addition to the
+  package manual.
+
+------------------------------------------------------------------------
+
 ## Version 1.0.1 (2026-04-26)
+
+CRAN release: 2026-05-11
 
 ### Bug fixes
 

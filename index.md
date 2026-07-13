@@ -420,6 +420,10 @@ and the HCUP data:
 # Package citation
 citation("HCUPtools")
 
+# Cite the SoftwareX article (also shown by citation("HCUPtools"))
+# Rathore, V. D. (2026). SoftwareX, 35, 102860.
+# https://doi.org/10.1016/j.softx.2026.102860
+
 # CCSR data citation (automatically formatted)
 hcup_citation()
 
