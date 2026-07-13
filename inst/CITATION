@@ -1,16 +1,32 @@
 citHeader("To cite HCUPtools in publications use:")
 
 bibentry(
+  bibtype = "Article",
+  title = "HCUPtools: An R package for streamlined access to healthcare cost and utilization project resources",
+  author = person("Vikrant Dev Rathore"),
+  journal = "SoftwareX",
+  year = "2026",
+  volume = "35",
+  pages = "102860",
+  doi = "10.1016/j.softx.2026.102860",
+  url = "https://doi.org/10.1016/j.softx.2026.102860",
+  textVersion = paste(
+    "Rathore, V. D. (2026).",
+    "HCUPtools: An R package for streamlined access to healthcare cost and utilization project resources.",
+    "SoftwareX, 35, 102860.",
+    "https://doi.org/10.1016/j.softx.2026.102860"
+  )
+)
+
+bibentry(
   bibtype = "Manual",
   title = "HCUPtools: Access and Work with HCUP Resources and Datasets",
-  author = c(
-    person(
-      "Vikrant Dev Rathore",
-      email = "rathore.vikrant@gmail.com",
-      role = c("aut", "cre")
-    )
+  author = person(
+    "Vikrant Dev Rathore",
+    email = "rathore.vikrant@gmail.com",
+    role = c("aut", "cre")
   ),
   year = "2026",
-  note = "R package version 1.0.1",
+  note = "R package version 1.0.2",
   url = "https://CRAN.R-project.org/package=HCUPtools"
 )
